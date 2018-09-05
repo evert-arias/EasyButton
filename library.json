@@ -1,20 +1,22 @@
 {
   "name": "EasyButton",
+  "version": "1.0.0",
   "keywords": "arduino, button, pushbutton, switch, debounce, debouncebutton",
   "description": "Arduino library to debounce buttons, detect presses, releases, long presses and sequences.",
+  "homepage": "https://evert-arias.github.io/EasyButton",
   "authors":
+  [
   {
     "name": "Evert Arias",
 	"email": "evert.arias@hotmail.com",
     "url": "https://evert-arias.github.io/"
-  },
+  }
+  ],
   "repository":
   {
     "type": "git",
     "url": "https://github.com/evert-arias/EasyButton.git"
   },
-  "version": "1.0.0",
-  "homepage": "https://evert-arias.github.io/EasyButton",
   "frameworks": "arduino",
   "platforms": "*",
   "license": "MIT"
