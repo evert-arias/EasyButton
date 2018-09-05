@@ -6,7 +6,11 @@
 
 Arduino library to debounce buttons, detect presses, releases, long presses and sequences
 
-![](img.gif)
+![](button.gif)
+
+## What it is for
+
+This library is for debouncing and reading momentary contact switches like tactile buttons. It uses callbacks to trigger actions when a Button is pressed once or held for a given duration. It also provides a sequence counter to be able to rise an event when a given pattern of presses has been matched.
 
 ## How to install
 
@@ -79,7 +83,8 @@ void loop() {
 
   ```c++
   // Pressed for a duration
-  button.onPressedFor(2000, onPressedCallback);
+  int duration = 2000;
+  button.onPressedFor(duration, onPressedCallback);
   ```
 
 - ###### onSequence
@@ -88,7 +93,9 @@ void loop() {
 
   ```c++
   // Sequence of presses
-  button.onSequence(5 /* number of presses */, 2000 /* timeout */, onSequenceMatched /* callback */);
+  int number_of_presses = 5;	 	// Number of presses for the sequence
+  int sequence_timeout = 2000;	// Sequence timeout
+  button.onSequence(number_of_presses, sequence_timeout, onSequenceMatchedCallback);
   ```
 
 #### Additional methods available
