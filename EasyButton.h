@@ -13,14 +13,14 @@
 class EasyButton
 {
 public:
-	EasyButton(uint8_t pin, uint32_t dbTime = 35, uint8_t puEnable = true, uint8_t invert = true) : _pin(pin), _db_time(dbTime), _pu_enabled(puEnable), _invert(invert) {}
+	EasyButton(uint8_t pin, uint32_t dbTime = 35, bool puEnable = true, bool invert = true) : _pin(pin), _db_time(dbTime), _pu_enabled(puEnable), _invert(invert) {}
 	~EasyButton() {};
 	// PUBLIC FUNCTIONS
 	void begin();																// Initialize a button object and the pin it's connected to.	
 	bool read();																// Returns the current debounced button state, true for pressed, false for released.
 	void onPressed(void(*callback)());											// Call a callback function when the button has been pressed and released.
 	void onPressedFor(uint32_t duration, void(*callback)());					// Call a callback function when the button has been held for at least the given number of milliseconds.
-	void onSequence(uint8_t sequences, uint32_t duration, void(*callback)());  // Call a callback function when the given sequence has matched. 
+	void onSequence(uint8_t sequences, uint32_t duration, void(*callback)());   // Call a callback function when the given sequence has matched. 
 	bool isPressed();				// Returns true if the button state was pressed at the last read.
 	bool isReleased();				// Returns true if the button state was released at the last read.	
 	bool wasPressed();				// Returns true if the button state at the last read was pressed.
