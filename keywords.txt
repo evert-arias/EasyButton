@@ -1,0 +1,33 @@
+#######################################
+# Syntax Coloring Map For EasyButton
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+EasyButton	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+read	KEYWORD2
+onPressed	KEYWORD2
+onPressedFor	KEYWORD2
+onSequence	KEYWORD2
+isPressed	KEYWORD2
+isReleased	KEYWORD2
+wasPressed	KEYWORD2
+wasReleased	KEYWORD2
+pressedFor	KEYWORD2
+releasedFor	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
