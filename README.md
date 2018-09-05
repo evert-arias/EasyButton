@@ -57,7 +57,8 @@ button.begin();
 
 ```c++
 void loop() {
-	button.read(); // Continuously read the status of the button. 
+    // Continuously read the status of the button. 
+    button.read();
 }
 ```
 
@@ -136,7 +137,7 @@ There some other methods available that might be useful for you in some scenario
 
   ```c++
   // pressedFor
-  int pressedForTime = 2000;	// 2000 ms
+  int pressedForTime = 2000;
   bool pressed_for = button.pressedFor(pressedForTime);
   ```
 
@@ -146,10 +147,17 @@ There some other methods available that might be useful for you in some scenario
 
   ```c++
   // releasedFor
-  int releasedForTime = 2000; // 2000 ms
+  int releasedForTime = 2000;
   bool released_for = button.releasedFor(releasedForTime);
   ```
 
+  #### Examples
+
+  [Pressed](https://github.com/evert-arias/EasyButton/blob/master/examples/Pressed/Pressed.ino)
+
+  [PressedForDuration](https://github.com/evert-arias/EasyButton/blob/master/examples/PressedForDuration/PressedForDuration.ino)
+
+  [Sequence](https://github.com/evert-arias/EasyButton/blob/master/examples/Sequence/Sequence.ino)
 
 ## Copyright
 
