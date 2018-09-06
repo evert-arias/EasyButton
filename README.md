@@ -6,7 +6,7 @@
 
 Arduino library to debounce buttons, detect presses, releases, long presses and sequences
 
-> :bulb: Attention! If using **ESP32**, be aware that some of the pins does not have software pullup/down functions. Use an external pull-up resistor, 10K works well. Refer to [Pull-up Resistors](https://learn.sparkfun.com/tutorials/pull-up-resistors).
+> :bulb: **Attention!** If using **ESP32**, be aware that some of the pins does not have software pullup/down functions. Use an external pull-up resistor, 10K works well. Refer to [Pull-up Resistors](https://learn.sparkfun.com/tutorials/pull-up-resistors).
 
 ![](button.gif)
 
