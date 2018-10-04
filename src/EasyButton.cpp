@@ -17,16 +17,16 @@ void EasyButton::begin() {
 	_last_change = _time;
 }
 
-void EasyButton::onPressed(void(*callback)()) {
+void EasyButton::onPressed(EasyButton::callback_t callback) {
 	mPressedCallback = callback;
 }
 
-void EasyButton::onPressedFor(uint32_t duration, void(*callback)()) {
+void EasyButton::onPressedFor(uint32_t duration, EasyButton::callback_t callback) {
 	_held_threshold = duration;
 	mPressedForCallback = callback;
 }
 
-void EasyButton::onSequence(uint8_t sequences, uint32_t duration, void(*callback)())
+void EasyButton::onSequence(uint8_t sequences, uint32_t duration, EasyButton::callback_t callback)
 {
 	_press_sequences = sequences;
 	_press_sequence_duration = duration;

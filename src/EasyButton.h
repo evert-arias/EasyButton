@@ -10,17 +10,30 @@
 
 #include <Arduino.h>
 
+#ifdef ESP8266
+#define EASYBUTTON_FUNCTIONAL_SUPPORT 1
+#endif
+
+#ifdef EASYBUTTON_FUNCTIONAL_SUPPORT
+#include <functional>
+#endif
+
 class EasyButton
 {
 public:
+#ifdef EASYBUTTON_FUNCTIONAL_SUPPORT
+	typedef std::function<void()> callback_t;
+#else
+	typedef void(*callback_t)();
+#endif
 	EasyButton(uint8_t pin, uint32_t dbTime = 35, bool puEnable = true, bool invert = true) : _pin(pin), _db_time(dbTime), _pu_enabled(puEnable), _invert(invert) {}
 	~EasyButton() {};
 	// PUBLIC FUNCTIONS
 	void begin();																// Initialize a button object and the pin it's connected to.	
 	bool read();																// Returns the current debounced button state, true for pressed, false for released.
-	void onPressed(void(*callback)());											// Call a callback function when the button has been pressed and released.
-	void onPressedFor(uint32_t duration, void(*callback)());					// Call a callback function when the button has been held for at least the given number of milliseconds.
-	void onSequence(uint8_t sequences, uint32_t duration, void(*callback)());   // Call a callback function when the given sequence has matched. 
+	void onPressed(callback_t callback);										// Call a callback function when the button has been pressed and released.
+	void onPressedFor(uint32_t duration, callback_t callback);					// Call a callback function when the button has been held for at least the given number of milliseconds.
+	void onSequence(uint8_t sequences, uint32_t duration, callback_t callback);	// Call a callback function when the given sequence has matched. 
 	bool isPressed();				// Returns true if the button state was pressed at the last read.
 	bool isReleased();				// Returns true if the button state was released at the last read.	
 	bool wasPressed();				// Returns true if the button state at the last read was pressed.
@@ -46,9 +59,9 @@ private:
 	uint32_t _time;						// Time of current state.
 	uint32_t _last_change;				// Time of last state change.
 	// CALLBACKS
-	void(*mPressedCallback)();			// Callback functionn for pressed events.
-	void(*mPressedForCallback)();		// Callback function for pressedFor events.
-	void(*mPressedSequenceCallback)();	// Callback function for pressedSequence events.
+	callback_t mPressedCallback;			// Callback function for pressed events.
+	callback_t mPressedForCallback;			// Callback function for pressedFor events.
+	callback_t mPressedSequenceCallback;	// Callback function for pressedSequence events.
 };
 
 #endif
