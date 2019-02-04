@@ -26,7 +26,7 @@ public:
 #else
 	typedef void(*callback_t)();
 #endif
-	EasyButton(uint8_t pin, uint32_t dbTime = 35, bool puEnable = true, bool invert = true) : _pin(pin), _db_time(dbTime), _pu_enabled(puEnable), _invert(invert) {}
+	EasyButton(uint8_t pin, uint32_t dbTime = 35, bool puEnable = true, bool invert = true) : _pin(pin), _db_time(dbTime), _invert(invert), _pu_enabled(puEnable) {}
 	~EasyButton() {};
 	// PUBLIC FUNCTIONS
 	void begin();																// Initialize a button object and the pin it's connected to.	
