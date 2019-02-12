@@ -131,7 +131,7 @@ bool EasyButton::read() {
 		_held_callback_called = false;
 	}
 	// button is not released.
-	else if (_current_state && _time - _last_change >= _held_threshold && mPressedForCallback) {
+	else if (_current_state && read_started_ms - _last_change >= _held_threshold && mPressedForCallback) {
 		// button has been pressed for at least the given time 
 		_was_btn_held = true;
 		// reset short presses counters.
