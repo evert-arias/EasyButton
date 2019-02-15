@@ -46,7 +46,9 @@ The class constructor takes the following additional arguments:
 
 > If using ESP32, be aware that some of the pins does not have software pullup/down functions. Use an external pullup resistor, 10K works well. Refer to [Pull-up Resistors](https://learn.sparkfun.com/tutorials/pull-up-resistors).
 
-**invert** : Inverts button's logic. If true, low = pressed else high = pressed.
+**invert** : Inverts button's logic. If true, low = pressed else high = pressed. 
+
+[*Please refer to this image to see the resistor configuration for each mode*](resistor_config.jpg)
 
 ```c++
 // EasyButton class's constructor signature
