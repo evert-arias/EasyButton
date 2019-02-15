@@ -98,7 +98,7 @@ void loop() {
 
   ```c++
   // Sequence of presses
-  int number_of_presses = 5;	 	// Number of presses for the sequence
+  int number_of_presses = 5;	// Number of presses for the sequence
   int sequence_timeout = 2000;	// Sequence timeout
   button.onSequence(number_of_presses, sequence_timeout, onSequenceMatchedCallback);
   ```
