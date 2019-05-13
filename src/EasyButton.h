@@ -20,6 +20,7 @@
 
 class EasyButton
 {
+	friend class EasyButtonTouch;
 public:
 #ifdef EASYBUTTON_FUNCTIONAL_SUPPORT
 	typedef std::function<void()> callback_t;
