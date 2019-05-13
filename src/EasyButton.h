@@ -27,7 +27,7 @@ public:
 	typedef void(*callback_t)();
 #endif
 	EasyButton(uint8_t pin, uint32_t dbTime = 35, bool puEnable = true, bool invert = true) : _pin(pin), _db_time(dbTime), _invert(invert), _pu_enabled(puEnable) {}
-	~EasyButton() {};
+	~EasyButton() {}
 	// PUBLIC FUNCTIONS
 	void begin();																// Initialize a button object and the pin it's connected to.	
 	bool read();																// Returns the current debounced button state, true for pressed, false for released.
@@ -59,9 +59,9 @@ private:
 	uint32_t _time;						// Time of current state.
 	uint32_t _last_change;				// Time of last state change.
 	// CALLBACKS
-	callback_t mPressedCallback;			// Callback function for pressed events.
-	callback_t mPressedForCallback;			// Callback function for pressedFor events.
-	callback_t mPressedSequenceCallback;	// Callback function for pressedSequence events.
+	callback_t _pressedCallback;			// Callback function for pressed events.
+	callback_t _pressedForCallback;			// Callback function for pressedFor events.
+	callback_t _pressedSequenceCallback;	// Callback function for pressedSequence events.
 };
 
 #endif
