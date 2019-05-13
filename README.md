@@ -40,9 +40,9 @@ EasyButton button(BUTTON_PIN);
 
 The class constructor takes the following additional arguments:
 
-**dbTime** : Debounce time in milliseconds.
+**debounce_time** : Debounce time in milliseconds.
 
-**puEnable** : Use or not the internal pullup resistor. Enabled by default.
+**pullup_enable** : Use or not the internal pullup resistor. Enabled by default.
 
 > If using ESP32, be aware that some of the pins does not have software pullup/down functions. Use an external pullup resistor, 10K works well. Refer to [Pull-up Resistors](https://learn.sparkfun.com/tutorials/pull-up-resistors).
 
@@ -52,7 +52,7 @@ The class constructor takes the following additional arguments:
 
 ```c++
 // EasyButton class's constructor signature
-EasyButton(uint8_t pin, uint32_t dbTime = 35, uint8_t puEnable = true, uint8_t invert = true)
+EasyButton(uint8_t pin, uint32_t debounce_time = 35, uint8_t pullup_enable = true, uint8_t invert = true)
 ```
 
 #### Initialize Button Object

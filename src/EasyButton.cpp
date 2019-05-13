@@ -20,20 +20,20 @@ void EasyButton::begin()
 
 void EasyButton::onPressed(EasyButton::callback_t callback)
 {
-	_pressedCallback = callback;
+	_pressed_callback = callback;
 }
 
 void EasyButton::onPressedFor(uint32_t duration, EasyButton::callback_t callback)
 {
 	_held_threshold = duration;
-	_pressedForCallback = callback;
+	_pressed_for_callback = callback;
 }
 
 void EasyButton::onSequence(uint8_t sequences, uint32_t duration, EasyButton::callback_t callback)
 {
 	_press_sequences = sequences;
 	_press_sequence_duration = duration;
-	_pressedSequenceCallback = callback;
+	_pressed_sequence_callback = callback;
 }
 
 bool EasyButton::isPressed()
@@ -108,13 +108,13 @@ bool EasyButton::read()
 			_short_press_count++;
 			// button is not being held.
 			// call the callback function for a short press event if it exist.
-			if (_pressedCallback) {
-				_pressedCallback();
+			if (_pressed_callback) {
+				_pressed_callback();
 			}
 
 			if (_short_press_count == _press_sequences && _press_sequence_duration >= (read_started_ms - _first_press_time)) {
-				if (_pressedSequenceCallback) {
-					_pressedSequenceCallback();
+				if (_pressed_sequence_callback) {
+					_pressed_sequence_callback();
 				}
 				_short_press_count = 0;
 				_first_press_time = 0;
@@ -129,20 +129,20 @@ bool EasyButton::read()
 		else {
 			_was_btn_held = false;
 		}
-		// since button released, reset _pressedForCallbackCalled value.
+		// since button released, reset _pressed_for_callbackCalled value.
 		_held_callback_called = false;
 	}
 	// button is not released.
-	else if (_current_state && read_started_ms - _last_change >= _held_threshold && _pressedForCallback) {
+	else if (_current_state && read_started_ms - _last_change >= _held_threshold && _pressed_for_callback) {
 		// button has been pressed for at least the given time 
 		_was_btn_held = true;
 		// reset short presses counters.
 		_short_press_count = 0;
 		_first_press_time = 0;
 		// call the callback function for a long press event if it exist and if it has not been called yet.
-		if (_pressedForCallback && !_held_callback_called) {
+		if (_pressed_for_callback && !_held_callback_called) {
 			_held_callback_called = true; // set as called.
-			_pressedForCallback();
+			_pressed_for_callback();
 		}
 	}
 
