@@ -15,19 +15,19 @@ EasyButton button(BUTTON_PIN);
 
 // Callback function to be called when the button is pressed.
 void onSequenceMatched() {
-	Serial.println("Button has been pressed!");
+  Serial.println("Button has been pressed!");
 }
 
 void setup() {
-	// Initialize Serial for debuging purposes.
-	Serial.begin(115200);
-	// Initialize the button.
-	button.begin();
-	// Add the callback function to be called when the given sequence of presses is matched.
-	button.onSequence(5 /* number of presses */, 2000 /* timeout */, onSequenceMatched /* callback */);
+  // Initialize Serial for debuging purposes.
+  Serial.begin(115200);
+  // Initialize the button.
+  button.begin();
+  // Add the callback function to be called when the given sequence of presses is matched.
+  button.onSequence(5 /* number of presses */, 2000 /* timeout */, onSequenceMatched /* callback */);
 }
 
 void loop() {
-	// Continuously read the status of the button. 
-	button.read();
+  // Continuously read the status of the button. 
+  button.read();
 }

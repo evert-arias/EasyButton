@@ -7,7 +7,8 @@
 
 #include "EasyButton.h"
 
-void EasyButton::begin() {
+void EasyButton::begin()
+{
 	pinMode(_pin, _pu_enabled ? INPUT_PULLUP : INPUT);
 	_current_state = digitalRead(_pin);
 	if (_invert) _current_state = !_current_state;
@@ -17,20 +18,22 @@ void EasyButton::begin() {
 	_last_change = _time;
 }
 
-void EasyButton::onPressed(EasyButton::callback_t callback) {
-	mPressedCallback = callback;
+void EasyButton::onPressed(EasyButton::callback_t callback)
+{
+	_pressed_callback = callback;
 }
 
-void EasyButton::onPressedFor(uint32_t duration, EasyButton::callback_t callback) {
+void EasyButton::onPressedFor(uint32_t duration, EasyButton::callback_t callback)
+{
 	_held_threshold = duration;
-	mPressedForCallback = callback;
+	_pressed_for_callback = callback;
 }
 
 void EasyButton::onSequence(uint8_t sequences, uint32_t duration, EasyButton::callback_t callback)
 {
 	_press_sequences = sequences;
 	_press_sequence_duration = duration;
-	mPressedSequenceCallback = callback;
+	_pressed_sequence_callback = callback;
 }
 
 bool EasyButton::isPressed()
@@ -63,7 +66,8 @@ bool EasyButton::releasedFor(uint32_t duration)
 	return !_current_state && _time - _last_change >= duration;
 }
 
-bool EasyButton::read() {
+bool EasyButton::read()
+{
 
 	// get current millis.
 	uint32_t read_started_ms = millis();
@@ -74,16 +78,14 @@ bool EasyButton::read() {
 	// if invert = true, invert Button's pin value. 
 	if (_invert) {
 		pinVal = !pinVal;
-	};
+	}
 
 	// detect change on button's state.
-	if (read_started_ms - _last_change < _db_time)
-	{
+	if (read_started_ms - _last_change < _db_time) {
 		// button's state has not changed.
 		_changed = false;
 	}
-	else
-	{
+	else {
 		// button's state has changed.
 		_last_state = _current_state;				// save last state.
 		_current_state = pinVal;					// assign new state as current state from pin's value.
@@ -106,18 +108,18 @@ bool EasyButton::read() {
 			_short_press_count++;
 			// button is not being held.
 			// call the callback function for a short press event if it exist.
-			if (mPressedCallback) {
-				mPressedCallback();
+			if (_pressed_callback) {
+				_pressed_callback();
 			}
 
 			if (_short_press_count == _press_sequences && _press_sequence_duration >= (read_started_ms - _first_press_time)) {
-				if (mPressedSequenceCallback) {
-					mPressedSequenceCallback();
+				if (_pressed_sequence_callback) {
+					_pressed_sequence_callback();
 				}
 				_short_press_count = 0;
 				_first_press_time = 0;
 			}
-			// if secuence timeout, reset short presses counters.
+			// if sequence timeout, reset short presses counters.
 			else if (_press_sequence_duration <= (read_started_ms - _first_press_time)) {
 				_short_press_count = 0;
 				_first_press_time = 0;
@@ -127,20 +129,20 @@ bool EasyButton::read() {
 		else {
 			_was_btn_held = false;
 		}
-		// since button released, reset mPressedForCallbackCalled value.
+		// since button released, reset _pressed_for_callbackCalled value.
 		_held_callback_called = false;
 	}
 	// button is not released.
-	else if (_current_state && read_started_ms - _last_change >= _held_threshold && mPressedForCallback) {
+	else if (_current_state && read_started_ms - _last_change >= _held_threshold && _pressed_for_callback) {
 		// button has been pressed for at least the given time 
 		_was_btn_held = true;
 		// reset short presses counters.
 		_short_press_count = 0;
 		_first_press_time = 0;
 		// call the callback function for a long press event if it exist and if it has not been called yet.
-		if (mPressedForCallback && !_held_callback_called) {
+		if (_pressed_for_callback && !_held_callback_called) {
 			_held_callback_called = true; // set as called.
-			mPressedForCallback();
+			_pressed_for_callback();
 		}
 	}
 
