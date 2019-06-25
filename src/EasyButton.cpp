@@ -10,7 +10,7 @@
 void EasyButton::begin()
 {
 	pinMode(_pin, _pu_enabled ? INPUT_PULLUP : INPUT);
-	_current_state = digitalRead(_pin);
+	_current_state = _readPin();
 	if (_invert) _current_state = !_current_state;
 	_time = millis();
 	_last_state = _current_state;
@@ -73,7 +73,7 @@ bool EasyButton::read()
 	uint32_t read_started_ms = millis();
 
 	// read pin value.
-	bool pinVal = digitalRead(_pin);
+	bool pinVal = _readPin();
 
 	// if invert = true, invert Button's pin value. 
 	if (_invert) {
@@ -149,4 +149,9 @@ bool EasyButton::read()
 	_time = read_started_ms;
 
 	return _current_state;
+}
+
+bool EasyButton::_readPin()
+{
+	return digitalRead(_pin);
 }

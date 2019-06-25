@@ -20,6 +20,7 @@
 
 class EasyButton
 {
+	friend class EasyButtonTouch;
 public:
 #ifdef EASYBUTTON_FUNCTIONAL_SUPPORT
 	typedef std::function<void()> callback_t;
@@ -29,7 +30,7 @@ public:
 	EasyButton(uint8_t pin, uint32_t debounce_time = 35, bool pullup_enable = true, bool invert = true) : _pin(pin), _db_time(debounce_time), _invert(invert), _pu_enabled(pullup_enable) {}
 	~EasyButton() {}
 	// PUBLIC FUNCTIONS
-	void begin();																// Initialize a button object and the pin it's connected to.	
+	virtual void begin();														// Initialize a button object and the pin it's connected to.
 	bool read();																// Returns the current debounced button state, true for pressed, false for released.
 	void onPressed(callback_t callback);										// Call a callback function when the button has been pressed and released.
 	void onPressedFor(uint32_t duration, callback_t callback);					// Call a callback function when the button has been held for at least the given number of milliseconds.
@@ -62,6 +63,8 @@ private:
 	callback_t _pressed_callback;			// Callback function for pressed events.
 	callback_t _pressed_for_callback;			// Callback function for pressedFor events.
 	callback_t _pressed_sequence_callback;	// Callback function for pressedSequence events.
+
+	virtual bool _readPin();			// Abstracts the pin value reading.
 };
 
 #endif
