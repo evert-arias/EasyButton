@@ -5,6 +5,7 @@
  * @license MIT
  */
 
+#if defined(ESP32)
 #include "EasyButtonTouch.h"
 
 void EasyButtonTouch::begin()
@@ -20,3 +21,5 @@ bool EasyButtonTouch::_readPin()
 {
 	return touchRead(_pin) < _touch_threshold;
 }
+
+#endif

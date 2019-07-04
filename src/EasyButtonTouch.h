@@ -5,7 +5,7 @@
  * @license MIT
  */
 
-#ifndef _EasyButtonTouch_h
+#if !defined(_EasyButtonTouch_h) and defined(ESP32)
 #define _EasyButtonTouch_h
 
 #include <Arduino.h>
