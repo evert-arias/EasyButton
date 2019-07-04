@@ -7,6 +7,7 @@
 #######################################
 
 EasyButton	KEYWORD1
+EasyButtonTouch	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
