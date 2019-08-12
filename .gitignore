@@ -8,8 +8,10 @@
 .piolibdeps
 .clang_complete
 .gcc-flags.json
+.pio
 
 ### VisualStudioCode ###
+.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
