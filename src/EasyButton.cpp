@@ -81,27 +81,31 @@ bool EasyButton::read()
 	}
 
 	// detect change on button's state.
-	if (read_started_ms - _last_change < _db_time) {
-		// button's state has not changed.
+	if (read_started_ms - _last_change < _db_time) 
+	{//true -> debounce time has not ellapsed 
 		_changed = false;
 	}
-	else {
-		// button's state has changed.
+	else 
+	{// debounce time ellapsed
 		_last_state = _current_state;				// save last state.
 		_current_state = pinVal;					// assign new state as current state from pin's value.
 		_changed = (_current_state != _last_state); // report state change if current state vary from last state.
 		// if state has changed since last read.
-		if (_changed) {
+		if (_changed) 
+		{// state change
 			// save current millis as last change time.
 			_last_change = read_started_ms;
 		}
 	}
 
 	// call the callback functions when conditions met.
-	if (!_current_state && _changed) {
+	// if (!_current_state && _changed) {
+	if (wasReleased()) {
 		// button was released.
-		if (!_was_btn_held) {
-			if (_short_press_count == 0) {
+		if (!_was_btn_held) 
+		{
+			if (_short_press_count == 0)
+			 {
 				_first_press_time = read_started_ms;
 			}
 			// increment presses counter.
@@ -112,21 +116,25 @@ bool EasyButton::read()
 				_pressed_callback();
 			}
 
-			if (_short_press_count == _press_sequences && _press_sequence_duration >= (read_started_ms - _first_press_time)) {
-				if (_pressed_sequence_callback) {
+			if (_short_press_count == _press_sequences && _press_sequence_duration >= (read_started_ms - _first_press_time)) 
+			{//true-> pressed_sequence
+				if (_pressed_sequence_callback)
+				{
 					_pressed_sequence_callback();
 				}
 				_short_press_count = 0;
-				_first_press_time = 0;
+				_first_press_time = 0;//MOdificar
 			}
 			// if sequence timeout, reset short presses counters.
-			else if (_press_sequence_duration <= (read_started_ms - _first_press_time)) {
+			else if (_press_sequence_duration <= (read_started_ms - _first_press_time))
+			{
 				_short_press_count = 0;
 				_first_press_time = 0;
 			}
 		}
 		// button was not held.
-		else {
+		else 
+		{
 			_was_btn_held = false;
 		}
 		// since button released, reset _pressed_for_callbackCalled value.
@@ -154,4 +162,19 @@ bool EasyButton::read()
 bool EasyButton::_readPin()
 {
 	return digitalRead(_pin);
+}
+
+bool EasyButton::supportsInterrupt()
+{
+	return (digitalPinToInterrupt(_pin) != NOT_AN_INTERRUPT);
+}
+
+void EasyButton::enableInterrupt(EasyButton::callback_t callback)
+{
+	attachInterrupt(digitalPinToInterrupt(_pin), callback, CHANGE);
+}
+
+void EasyButton::disableInterrupt()
+{
+	detachInterrupt(digitalPinToInterrupt(_pin));
 }

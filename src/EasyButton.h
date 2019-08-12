@@ -32,9 +32,13 @@ public:
 	// PUBLIC FUNCTIONS
 	virtual void begin();														// Initialize a button object and the pin it's connected to.
 	bool read();																// Returns the current debounced button state, true for pressed, false for released.
+	
 	void onPressed(callback_t callback);										// Call a callback function when the button has been pressed and released.
 	void onPressedFor(uint32_t duration, callback_t callback);					// Call a callback function when the button has been held for at least the given number of milliseconds.
 	void onSequence(uint8_t sequences, uint32_t duration, callback_t callback);	// Call a callback function when the given sequence has matched. 
+	void enableInterrupt(callback_t callback);									// Call a callback function when the button is pressed or released
+	void disableInterrupt();
+	bool supportsInterrupt();		// Returns true if the button pin is an external interrupt pin
 	bool isPressed();				// Returns true if the button state was pressed at the last read.
 	bool isReleased();				// Returns true if the button state was released at the last read.	
 	bool wasPressed();				// Returns true if the button state at the last read was pressed.
@@ -60,12 +64,11 @@ private:
 	uint32_t _time;						// Time of current state.
 	uint32_t _last_change;				// Time of last state change.
 	// CALLBACKS
-	callback_t _pressed_callback;			// Callback function for pressed events.
+	callback_t _pressed_callback;				// Callback function for pressed events.
 	callback_t _pressed_for_callback;			// Callback function for pressedFor events.
-	callback_t _pressed_sequence_callback;	// Callback function for pressedSequence events.
+	callback_t _pressed_sequence_callback;		// Callback function for pressedSequence events.
 
 	virtual bool _readPin();			// Abstracts the pin value reading.
 };
 
 #endif
-
