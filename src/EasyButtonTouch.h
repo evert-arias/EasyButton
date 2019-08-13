@@ -1,7 +1,7 @@
 /**
  * EasyButtonTouch.h
  * @author Evert Arias, Gutierrez PS
- * @version 1.0.0
+ * @version 1.1.0
  * @license MIT
  */
 

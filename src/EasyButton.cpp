@@ -1,7 +1,7 @@
 /**
  * EasyButton.cpp
  * @author Evert Arias
- * @version 1.0.0
+ * @version 1.1.0
  * @license MIT
  */
 
