@@ -24,6 +24,9 @@ wasPressed	KEYWORD2
 wasReleased	KEYWORD2
 pressedFor	KEYWORD2
 releasedFor	KEYWORD2
+enableInterrupt	KEYWORD2
+disableInterrupt	KEYWORD2
+supportsInterrupt	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
