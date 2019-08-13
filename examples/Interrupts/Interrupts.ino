@@ -19,11 +19,6 @@ void buttonPressed()
   Serial.println("Button is pressed");
 }
 
-void buttonPressedTwoSeconds()
-{
-  Serial.println("Button pressed for two seconds");
-}
-
 void buttonSequence()
 {
   Serial.println("Sequence");
@@ -45,7 +40,6 @@ void setup() {
   }
   
   button.onPressed(buttonPressed);
-  button.onPressedFor(2000, buttonPressedTwoSeconds);
   button.onSequence(3, 5000, buttonSequence);
 }
 
