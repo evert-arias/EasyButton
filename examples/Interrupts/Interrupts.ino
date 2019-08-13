@@ -2,7 +2,7 @@
   Name:    MultipleButtons.ino
   Created:  8/11/2019 11:45:52 AM
   Author: José Gabriel Companioni Benítez (https://github.com/elC0mpa)
-  Description: Example to demostrate how to use the library with more than one button
+  Description: Example to demostrate how to use interrupts with the library in order to improve performance 
 */
 
 #include <Arduino.h>
