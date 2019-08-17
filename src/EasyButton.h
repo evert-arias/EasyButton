@@ -72,6 +72,7 @@ private:
 	callback_t _pressed_sequence_callback;		// Callback function for pressedSequence events.
 
 	virtual bool _readPin();			// Abstracts the pin value reading.
+	void _checkPressedTime();			// Verify if pressed_for_callback should be called
 };
 
 #endif
