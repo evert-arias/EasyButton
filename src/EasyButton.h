@@ -18,6 +18,9 @@
 #include <functional>
 #endif
 
+#define INTERRUPT 0
+#define POLL 1
+
 class EasyButton
 {
 	friend class EasyButtonTouch;
