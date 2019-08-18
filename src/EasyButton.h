@@ -16,7 +16,11 @@
 
 #ifdef EASYBUTTON_FUNCTIONAL_SUPPORT
 #include <functional>
+#include "FunctionalInterrupt.h"
 #endif
+
+#define INTERRUPT 0
+#define POLL 1
 
 class EasyButton
 {
@@ -31,8 +35,8 @@ public:
 	~EasyButton() {}
 	// PUBLIC FUNCTIONS
 	virtual void begin();														// Initialize a button object and the pin it's connected to.
-	bool read();																// Returns the current debounced button state, true for pressed, false for released.
-	
+	bool read(int read_type = POLL);											// Returns the current debounced button state, true for pressed, false for released.
+	void update();																// Update button pressed time, only needed when using interrupts
 	void onPressed(callback_t callback);										// Call a callback function when the button has been pressed and released.
 	void onPressedFor(uint32_t duration, callback_t callback);					// Call a callback function when the button has been held for at least the given number of milliseconds.
 	void onSequence(uint8_t sequences, uint32_t duration, callback_t callback);	// Call a callback function when the given sequence has matched. 
@@ -69,6 +73,7 @@ private:
 	callback_t _pressed_sequence_callback;		// Callback function for pressedSequence events.
 
 	virtual bool _readPin();			// Abstracts the pin value reading.
+	void _checkPressedTime();			// Verify if pressed_for_callback should be called
 };
 
 #endif

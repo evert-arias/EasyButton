@@ -1,8 +1,8 @@
 /*
-  Name:    MultipleButtons.ino
+  Name:    Interrupts.ino
   Created:  8/11/2019 11:45:52 AM
   Author: José Gabriel Companioni Benítez (https://github.com/elC0mpa)
-  Description: Example to demostrate how to use the library with more than one button
+  Description: Example to demostrate how to use interrupts in order to improve performance 
 */
 
 #include <Arduino.h>
@@ -13,42 +13,37 @@
 
 EasyButton button(BUTTON_PIN);
 
-
 void buttonPressed()
 {
-  Serial.println("Button is pressed");
+  Serial.println("Button Pressed");
 }
 
-void buttonPressedTwoSeconds()
+void sequenceEllapsed()
 {
-  Serial.println("Button pressed for two seconds");
+  Serial.println("Double click");
 }
 
-void buttonSequence()
+void buttonISR()
 {
-  Serial.println("Sequence");
+  //When button is being used through external interrupts, parameter INTERRUPT must be passed to read() function
+  button.read(INTERRUPT);
 }
 
-void buttonPressedReleased()
+void setup()
 {
-  button.read();
-}
-
-void setup() {
   // put your setup code here, to run once:
   Serial.begin(BAUDRATE);
   button.begin();
+  button.onPressed(buttonPressed);
+  button.onSequence(2, 1500, sequenceEllapsed);
   if (button.supportsInterrupt())
   {
-    Serial.println("Button will be used through external interrupts");
-    button.enableInterrupt(buttonPressedReleased);
+    button.enableInterrupt(buttonISR);
+    Serial.println("Button will be used through interrupts");
   }
-  
-  button.onPressed(buttonPressed);
-  button.onPressedFor(2000, buttonPressedTwoSeconds);
-  button.onSequence(3, 5000, buttonSequence);
 }
 
-void loop() {
+void loop() 
+{
   // put your main code here, to run repeatedly:
 }
