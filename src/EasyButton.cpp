@@ -66,7 +66,7 @@ bool EasyButton::releasedFor(uint32_t duration)
 	return !_current_state && _time - _last_change >= duration;
 }
 
-bool EasyButton::read(int read_type = POLL)
+bool EasyButton::read(int read_type)
 {
 	uint32_t read_started_ms = millis();
 
