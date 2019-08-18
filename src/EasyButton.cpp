@@ -66,93 +66,71 @@ bool EasyButton::releasedFor(uint32_t duration)
 	return !_current_state && _time - _last_change >= duration;
 }
 
-bool EasyButton::read()
+bool EasyButton::read(int read_type = POLL)
 {
-
-	// get current millis.
 	uint32_t read_started_ms = millis();
 
-	// read pin value.
 	bool pinVal = _readPin();
 
-	// if invert = true, invert Button's pin value. 
-	if (_invert) {
+	if (_invert)
 		pinVal = !pinVal;
-	}
 
-	// detect change on button's state.
-	if (read_started_ms - _last_change < _db_time) 
-	{//true -> debounce time has not ellapsed 
+	if (read_started_ms - _last_change < _db_time)
+	{ 	//true -> debounce time has not ellapsed
 		_changed = false;
 	}
-	else 
-	{// debounce time ellapsed
+	else
+	{	//true -> debounce time ellapsed 
 		_last_state = _current_state;				// save last state.
 		_current_state = pinVal;					// assign new state as current state from pin's value.
 		_changed = (_current_state != _last_state); // report state change if current state vary from last state.
 		// if state has changed since last read.
-		if (_changed) 
-		{// state change
+		if (_changed)
+		{ // state change
 			// save current millis as last change time.
 			_last_change = read_started_ms;
 		}
 	}
 
-	// call the callback functions when conditions met.
-	// if (!_current_state && _changed) {
-	if (wasReleased()) {
-		// button was released.
-		if (!_was_btn_held) 
+	if (wasReleased())
+	{
+		if (!_was_btn_held)
 		{
 			if (_short_press_count == 0)
-			 {
 				_first_press_time = read_started_ms;
-			}
-			// increment presses counter.
-			_short_press_count++;
-			// button is not being held.
-			// call the callback function for a short press event if it exist.
-			if (_pressed_callback) {
-				_pressed_callback();
-			}
 
-			if (_short_press_count == _press_sequences && _press_sequence_duration >= (read_started_ms - _first_press_time)) 
-			{//true-> pressed_sequence
+			_short_press_count++;
+
+			if (_pressed_callback)
+				_pressed_callback();
+
+			if (_short_press_count == _press_sequences && _press_sequence_duration >= (read_started_ms - _first_press_time))
+			{ //true-> pressed_sequence
 				if (_pressed_sequence_callback)
 				{
 					_pressed_sequence_callback();
 				}
 				_short_press_count = 0;
-				_first_press_time = 0;//MOdificar
+				_first_press_time = 0; //MOdificar
 			}
-			// if sequence timeout, reset short presses counters.
+
 			else if (_press_sequence_duration <= (read_started_ms - _first_press_time))
-			{
+			{ // true-> sequence timeout
 				_short_press_count = 0;
 				_first_press_time = 0;
 			}
 		}
 		// button was not held.
-		else 
+		else
 		{
 			_was_btn_held = false;
 		}
 		// since button released, reset _pressed_for_callbackCalled value.
 		_held_callback_called = false;
 	}
-	// button is not released.
-	else if (_current_state && read_started_ms - _last_change >= _held_threshold && _pressed_for_callback) {
-		// button has been pressed for at least the given time 
-		_was_btn_held = true;
-		// reset short presses counters.
-		_short_press_count = 0;
-		_first_press_time = 0;
-		// call the callback function for a long press event if it exist and if it has not been called yet.
-		if (_pressed_for_callback && !_held_callback_called) {
-			_held_callback_called = true; // set as called.
-			_pressed_for_callback();
-		}
-	}
+	else if(isPressed() && read_type == POLL)
+		_checkPressedTime();
+	
 
 	_time = read_started_ms;
 
@@ -177,4 +155,29 @@ void EasyButton::enableInterrupt(EasyButton::callback_t callback)
 void EasyButton::disableInterrupt()
 {
 	detachInterrupt(digitalPinToInterrupt(_pin));
+}
+
+void EasyButton::update()
+{
+	if (!_was_btn_held)
+		_checkPressedTime();
+}
+
+void EasyButton::_checkPressedTime()
+{
+	uint32_t read_started_ms = millis();
+	if (_current_state && read_started_ms - _last_change >= _held_threshold && _pressed_for_callback)
+	{
+		// button has been pressed for at least the given time
+		_was_btn_held = true;
+		// reset short presses counters.
+		_short_press_count = 0;
+		_first_press_time = 0;
+		// call the callback function for a long press event if it exist and if it has not been called yet.
+		if (_pressed_for_callback && !_held_callback_called)
+		{
+			_held_callback_called = true; // set as called.
+			_pressed_for_callback();
+		}
+	}
 }
