@@ -16,6 +16,7 @@
 
 #ifdef EASYBUTTON_FUNCTIONAL_SUPPORT
 #include <functional>
+#include "FunctionalInterrupt.h"
 #endif
 
 class EasyButton
