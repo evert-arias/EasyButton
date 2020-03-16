@@ -25,7 +25,7 @@ https://easybtn.earias.me/docs/fundamentals
 
 [Detecting Sequence](https://easybtn.earias.me/docs/on-sequence-example)
 
-
 ## Copyright
 
-[MIT](../LICENSE.md) © [Evert Arias](https://evert-arias.github.io/)
+[MIT](../LICENSE.md) © [Evert Arias](https://www.earias.me/)
+
