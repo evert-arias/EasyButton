@@ -3,7 +3,9 @@
 [![Join the chat at https://gitter.im/easy-button/chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/easy-button/chat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](http://doge.mit-license.org)
 
-Arduino library to debounce buttons, detect presses, releases, long presses and sequences
+Arduino library to debounce buttons, detect presses, releases, long presses and sequences.
+
+Full documentation available at: https://easybtn.earias.me/docs/introduction
 
 > :bulb: **Attention!** If using **ESP32**, be aware that some of the pins does not have software pullup/down functions. Use an external pull-up resistor, 10K works well. Refer to [Pull-up Resistors](https://learn.sparkfun.com/tutorials/pull-up-resistors).
 
