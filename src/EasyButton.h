@@ -9,6 +9,7 @@
 #define _EasyButton_h
 
 #include <Arduino.h>
+#include "Sequence.h"
 
 #ifdef ESP8266
 #define EASYBUTTON_FUNCTIONAL_SUPPORT 1
@@ -31,7 +32,7 @@ public:
 #else
 	typedef void(*callback_t)();
 #endif
-	EasyButton(uint8_t pin, uint32_t debounce_time = 35, bool pullup_enable = true, bool invert = true) : _pin(pin), _db_time(debounce_time), _invert(invert), _pu_enabled(pullup_enable) {}
+	EasyButton(uint8_t pin, uint32_t debounce_time = 35, bool pullup_enable = true, bool invert = true) : _pin(pin), _db_time(debounce_time), _invert(invert), _pu_enabled(pullup_enable), _sequences_count(0) {}
 	~EasyButton() {}
 	// PUBLIC FUNCTIONS
 	virtual void begin();														// Initialize a button object and the pin it's connected to.
@@ -51,10 +52,9 @@ public:
 	bool releasedFor(uint32_t duration);	// Returns true if the button state at the last read was released, and has been in that state for at least the given number of milliseconds.
 private:
 	// PRIVATE VARIABLES
-	uint32_t _short_press_count;		// Short press counter.
-	uint32_t _first_press_time;			// Time when button was pressed for first time.
-	uint8_t _press_sequences;			// The number of sequences to count.
-	uint32_t _press_sequence_duration;  // Time limit of the sequence.
+	Sequence _sequences[5];
+	uint16_t _sequences_count;
+
 	uint32_t _held_threshold;			// Held threshold.
 	bool _was_btn_held;			        // Indicate if button was held.
 	bool _held_callback_called;			// Indicate if button long press has been notified.
@@ -70,7 +70,6 @@ private:
 	// CALLBACKS
 	callback_t _pressed_callback;				// Callback function for pressed events.
 	callback_t _pressed_for_callback;			// Callback function for pressedFor events.
-	callback_t _pressed_sequence_callback;		// Callback function for pressedSequence events.
 
 	virtual bool _readPin();			// Abstracts the pin value reading.
 	void _checkPressedTime();			// Verify if pressed_for_callback should be called
