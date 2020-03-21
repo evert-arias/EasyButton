@@ -26,4 +26,6 @@ public:
     Sequence operator=(const Sequence& sequence);
 
     void newPress(uint32_t read_started_ms);
+
+    void reset();
 };
