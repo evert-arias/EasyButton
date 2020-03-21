@@ -96,13 +96,13 @@ bool EasyButton::read(int read_type)
 	{
 		if (!_was_btn_held)
 		{
+			if (_pressed_callback)
+				_pressed_callback();
+
 			if (_short_press_count == 0)
 				_first_press_time = read_started_ms;
 
 			_short_press_count++;
-
-			if (_pressed_callback)
-				_pressed_callback();
 
 			if (_short_press_count == _press_sequences && _press_sequence_duration >= (read_started_ms - _first_press_time))
 			{ //true-> pressed_sequence
