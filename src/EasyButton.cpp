@@ -34,6 +34,7 @@ void EasyButton::onSequence(uint8_t sequences, uint32_t duration, EasyButton::ca
 	if(_sequences_count < 5)
 	{
 		Sequence sequence(sequences, duration);
+		sequence.enable();
 		_sequences[_sequences_count] = sequence;
 		_pressed_sequence_callbacks[_sequences_count++] = callback;
 	}
