@@ -156,7 +156,12 @@ void EasyButton::_checkPressedTime()
 	{
 		// button has been pressed for at least the given time
 		_was_btn_held = true;
+		
 		// reset short presses counters.
+		for(Sequence seq:_sequences)
+			{
+				seq.reset();
+			}
 		
 		// call the callback function for a long press event if it exist and if it has not been called yet.
 		if (_pressed_for_callback && !_held_callback_called)
