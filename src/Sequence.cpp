@@ -17,13 +17,17 @@ void Sequence::newPress(uint32_t read_started_ms)
 
 			if (_short_press_count == _press_sequences && _press_sequence_duration >= (read_started_ms - _first_press_time))
 			{ //true-> pressed_sequence
-				_short_press_count = 0;
-                _first_press_time = 0;
+				reset();
 			}
 
 			else if (_press_sequence_duration <= (read_started_ms - _first_press_time))
 			{ // true-> sequence timeout
-				_short_press_count = 0;
-				_first_press_time = 0;
+				reset();
 			}
+}
+
+void Sequence::reset()
+{
+	_short_press_count = 0;
+	_first_press_time = 0;
 }

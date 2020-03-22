@@ -18,9 +18,9 @@ public:
         _short_press_count = 0;
     }
 
-    Sequence::Sequence(){}
-
     Sequence operator=(const Sequence& sequence);
 
     void newPress(uint32_t read_started_ms);
+
+    void reset();
 };
