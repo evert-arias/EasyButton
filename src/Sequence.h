@@ -25,4 +25,8 @@ public:
     bool newPress(uint32_t read_started_ms);
 
     void reset();
+
+    void enable(){_is_enabled = true;}
+
+    void disable(){_is_enabled = false;}
 };
