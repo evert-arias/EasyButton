@@ -9,6 +9,7 @@
 #define _EasyButton_h
 
 #include <Arduino.h>
+#include "Sequence.h"
 
 #ifdef ESP8266
 #define EASYBUTTON_FUNCTIONAL_SUPPORT 1
@@ -21,6 +22,8 @@
 
 #define INTERRUPT 0
 #define POLL 1
+
+#define MAX_SEQUENCES 5
 
 class EasyButton
 {
@@ -51,7 +54,10 @@ public:
 	bool releasedFor(uint32_t duration);	// Returns true if the button state at the last read was released, and has been in that state for at least the given number of milliseconds.
 private:
 	// PRIVATE VARIABLES
-	
+	Sequence _sequences[MAX_SEQUENCES];
+	uint16_t _sequences_count;
+	callback_t _pressed_sequence_callbacks[MAX_SEQUENCES];
+
 	uint32_t _held_threshold;			// Held threshold.
 	bool _was_btn_held;			        // Indicate if button was held.
 	bool _held_callback_called;			// Indicate if button long press has been notified.
