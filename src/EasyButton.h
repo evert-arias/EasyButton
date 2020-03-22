@@ -51,10 +51,7 @@ public:
 	bool releasedFor(uint32_t duration);	// Returns true if the button state at the last read was released, and has been in that state for at least the given number of milliseconds.
 private:
 	// PRIVATE VARIABLES
-	uint32_t _short_press_count;		// Short press counter.
-	uint32_t _first_press_time;			// Time when button was pressed for first time.
-	uint8_t _press_sequences;			// The number of sequences to count.
-	uint32_t _press_sequence_duration;  // Time limit of the sequence.
+	
 	uint32_t _held_threshold;			// Held threshold.
 	bool _was_btn_held;			        // Indicate if button was held.
 	bool _held_callback_called;			// Indicate if button long press has been notified.
