@@ -6,10 +6,13 @@ Sequence Sequence::operator=(const Sequence& sequence)
     _first_press_time = sequence._first_press_time;
     _press_sequences = sequence._press_sequences;
     _short_press_count = sequence._short_press_count;
+	_is_enabled = sequence._is_enabled;
 }
 
 bool Sequence::newPress(uint32_t read_started_ms)
 {
+	if(_is_enabled)
+	{
 		if (_short_press_count == 0)
 			_first_press_time = read_started_ms;
 
@@ -26,6 +29,7 @@ bool Sequence::newPress(uint32_t read_started_ms)
 			reset();
 			return false;
 		}
+	}
 	return false;
 }
 

@@ -5,6 +5,7 @@ class Sequence
 {
 private:
 
+    bool _is_enabled;
     uint32_t _press_sequence_duration;  // Time limit of the sequence.
     uint32_t _first_press_time;         // Time when button was pressed for first time.
     uint8_t _press_sequences;			// The number of sequences to count.
@@ -16,6 +17,7 @@ public:
     _press_sequence_duration(duration)
     {
         _short_press_count = 0;
+        _is_enabled = false;
     }
 
     Sequence operator=(const Sequence& sequence);
