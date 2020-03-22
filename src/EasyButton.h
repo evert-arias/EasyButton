@@ -73,7 +73,6 @@ private:
 	// CALLBACKS
 	callback_t _pressed_callback;				// Callback function for pressed events.
 	callback_t _pressed_for_callback;			// Callback function for pressedFor events.
-	callback_t _pressed_sequence_callback;		// Callback function for pressedSequence events.
 
 	virtual bool _readPin();			// Abstracts the pin value reading.
 	void _checkPressedTime();			// Verify if pressed_for_callback should be called

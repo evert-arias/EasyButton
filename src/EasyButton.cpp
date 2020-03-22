@@ -31,7 +31,7 @@ void EasyButton::onPressedFor(uint32_t duration, EasyButton::callback_t callback
 
 void EasyButton::onSequence(uint8_t sequences, uint32_t duration, EasyButton::callback_t callback)
 {
-	_pressed_sequence_callback = callback;
+	
 }
 
 bool EasyButton::isPressed()
@@ -156,7 +156,7 @@ void EasyButton::_checkPressedTime()
 	{
 		// button has been pressed for at least the given time
 		_was_btn_held = true;
-		
+
 		// reset short presses counters.
 		for(Sequence seq:_sequences)
 			{
