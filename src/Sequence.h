@@ -20,6 +20,8 @@ public:
         _is_enabled = false;
     }
 
+    Sequence(){}
+
     Sequence operator=(const Sequence& sequence);
 
     bool newPress(uint32_t read_started_ms);
