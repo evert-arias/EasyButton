@@ -92,7 +92,20 @@ bool EasyButton::read(int read_type)
 
 	if (wasReleased())
 	{
-		
+		if (!_was_btn_held)
+		{
+			if (_pressed_callback)
+				_pressed_callback();
+
+			for (size_t i = 0; i < MAX_SEQUENCES; i++)
+			{
+				if(_sequences[i].newPress(read_started_ms))
+				{
+					callback_t function = _pressed_sequence_callbacks[i];
+					function();
+				}
+			}
+		}
 		// button was not held.
 		else
 		{
