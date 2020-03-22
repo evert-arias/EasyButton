@@ -1,11 +1,9 @@
 #include <Arduino.h>
 
-typedef void(*callback_t)();
 
 class Sequence
 {
 private:
-    callback_t _sequence_callback;
 
     uint32_t _press_sequence_duration;  // Time limit of the sequence.
     uint32_t _first_press_time;         // Time when button was pressed for first time.
@@ -14,10 +12,9 @@ private:
 
 
 public:
-    Sequence(uint8_t sequences, uint32_t duration, callback_t calllback):_press_sequences(sequences), 
+    Sequence(uint8_t sequences, uint32_t duration):_press_sequences(sequences), 
     _press_sequence_duration(duration)
     {
-        _sequence_callback = calllback;
         _short_press_count = 0;
     }
 
