@@ -21,11 +21,6 @@ void otherSequence()
   Serial.println("Other sequence");
 }
 
-void buttonPressedForTwoSeconds()
-{
-  Serial.println("Button pressed for two seconds");
-}
-
 EasyButton button(BUTTON_PIN);
 
 void setup() {
