@@ -31,9 +31,13 @@ void EasyButton::onPressedFor(uint32_t duration, EasyButton::callback_t callback
 
 void EasyButton::onSequence(uint8_t sequences, uint32_t duration, EasyButton::callback_t callback)
 {
-	_press_sequences = sequences;
-	_press_sequence_duration = duration;
-	_pressed_sequence_callback = callback;
+	if(_sequences_count < 5)
+	{
+		Sequence sequence(sequences, duration);
+		sequence.enable();
+		_sequences[_sequences_count] = sequence;
+		_pressed_sequence_callbacks[_sequences_count++] = callback;
+	}
 }
 
 bool EasyButton::isPressed()
@@ -96,28 +100,16 @@ bool EasyButton::read(int read_type)
 	{
 		if (!_was_btn_held)
 		{
-			if (_short_press_count == 0)
-				_first_press_time = read_started_ms;
-
-			_short_press_count++;
-
 			if (_pressed_callback)
 				_pressed_callback();
 
-			if (_short_press_count == _press_sequences && _press_sequence_duration >= (read_started_ms - _first_press_time))
-			{ //true-> pressed_sequence
-				if (_pressed_sequence_callback)
+			for (size_t i = 0; i < MAX_SEQUENCES; i++)
+			{
+				if(_sequences[i].newPress(read_started_ms))
 				{
-					_pressed_sequence_callback();
+					callback_t function = _pressed_sequence_callbacks[i];
+					function();
 				}
-				_short_press_count = 0;
-				_first_press_time = 0; //MOdificar
-			}
-
-			else if (_press_sequence_duration <= (read_started_ms - _first_press_time))
-			{ // true-> sequence timeout
-				_short_press_count = 0;
-				_first_press_time = 0;
 			}
 		}
 		// button was not held.
@@ -170,9 +162,13 @@ void EasyButton::_checkPressedTime()
 	{
 		// button has been pressed for at least the given time
 		_was_btn_held = true;
+
 		// reset short presses counters.
-		_short_press_count = 0;
-		_first_press_time = 0;
+		for(Sequence seq:_sequences)
+			{
+				seq.reset();
+			}
+		
 		// call the callback function for a long press event if it exist and if it has not been called yet.
 		if (_pressed_for_callback && !_held_callback_called)
 		{
