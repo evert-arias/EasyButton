@@ -12,7 +12,7 @@ private:
     uint32_t _short_press_count;		// Short press counter.
 
 public:
-    Sequence(uint8_t sequences, uint32_t duration):_press_sequences(sequences), 
+    Sequence(uint8_t sequences, uint32_t duration):_press_sequences(sequences),
     _press_sequence_duration(duration)
     {
         _short_press_count = 0;
@@ -21,7 +21,7 @@ public:
 
     Sequence(){}
 
-    Sequence operator=(const Sequence& sequence);
+    Sequence& operator=(const Sequence& sequence);
 
     bool newPress(uint32_t read_started_ms);
 
