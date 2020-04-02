@@ -1,15 +1,5 @@
 #include "Sequence.h"
 
-Sequence& Sequence::operator=(const Sequence& sequence)
-{
-    _press_sequence_duration = sequence._press_sequence_duration;
-    _first_press_time = sequence._first_press_time;
-    _press_sequences = sequence._press_sequences;
-    _short_press_count = sequence._short_press_count;
-    _is_enabled = sequence._is_enabled;
-    return *this;
-}
-
 bool Sequence::newPress(uint32_t read_started_ms)
 {
 	if(_is_enabled)
