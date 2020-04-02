@@ -20,7 +20,7 @@ public:
     {
     }
 
-    Sequence(){}
+    Sequence() : Sequence(0, 0){}
 
     bool newPress(uint32_t read_started_ms);
 
