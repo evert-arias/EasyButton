@@ -15,6 +15,7 @@ public:
     Sequence(uint8_t sequences, uint32_t duration) : _is_enabled(false),
     _press_sequences(sequences),
     _press_sequence_duration(duration),
+    _first_press_time(0),
     _short_press_count(0)
     {
     }
