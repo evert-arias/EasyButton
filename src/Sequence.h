@@ -12,11 +12,11 @@ private:
     uint32_t _short_press_count;		// Short press counter.
 
 public:
-    Sequence(uint8_t sequences, uint32_t duration):_press_sequences(sequences),
-    _press_sequence_duration(duration)
+    Sequence(uint8_t sequences, uint32_t duration) : _is_enabled(false),
+    _press_sequences(sequences),
+    _press_sequence_duration(duration),
+    _short_press_count(0)
     {
-        _short_press_count = 0;
-        _is_enabled = false;
     }
 
     Sequence(){}
