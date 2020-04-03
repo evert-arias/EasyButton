@@ -20,8 +20,8 @@
 #include "FunctionalInterrupt.h"
 #endif
 
-#define INTERRUPT 0
-#define POLL 1
+#define EASYBUTTON_TYPE_INTERRUPT 0
+#define EASYBUTTON_TYPE_POLL 1
 
 #define MAX_SEQUENCES 5
 
@@ -38,7 +38,7 @@ public:
 	~EasyButton() {}
 	// PUBLIC FUNCTIONS
 	virtual void begin();														// Initialize a button object and the pin it's connected to.
-	bool read(int read_type = POLL);											// Returns the current debounced button state, true for pressed, false for released.
+	bool read(int read_type = EASYBUTTON_TYPE_POLL);											// Returns the current debounced button state, true for pressed, false for released.
 	void update();																// Update button pressed time, only needed when using interrupts
 	void onPressed(callback_t callback);										// Call a callback function when the button has been pressed and released.
 	void onPressedFor(uint32_t duration, callback_t callback);					// Call a callback function when the button has been held for at least the given number of milliseconds.
