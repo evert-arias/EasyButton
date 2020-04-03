@@ -11,7 +11,8 @@ void EasyButton::begin()
 {
 	pinMode(_pin, _pu_enabled ? INPUT_PULLUP : INPUT);
 	_current_state = _readPin();
-	if (_invert) _current_state = !_current_state;
+	if (_invert)
+		_current_state = !_current_state;
 	_time = millis();
 	_last_state = _current_state;
 	_changed = false;
@@ -31,7 +32,7 @@ void EasyButton::onPressedFor(uint32_t duration, EasyButton::callback_t callback
 
 void EasyButton::onSequence(uint8_t sequences, uint32_t duration, EasyButton::callback_t callback)
 {
-	if(_sequences_count < 5)
+	if (_sequences_count < 5)
 	{
 		Sequence sequence(sequences, duration);
 		sequence.enable();
@@ -80,11 +81,11 @@ bool EasyButton::read(int read_type)
 		pinVal = !pinVal;
 
 	if (read_started_ms - _last_change < _db_time)
-	{ 	//true -> debounce time has not ellapsed
+	{ //true -> debounce time has not ellapsed
 		_changed = false;
 	}
 	else
-	{	//true -> debounce time ellapsed 
+	{												//true -> debounce time ellapsed
 		_last_state = _current_state;				// save last state.
 		_current_state = pinVal;					// assign new state as current state from pin's value.
 		_changed = (_current_state != _last_state); // report state change if current state vary from last state.
@@ -105,7 +106,7 @@ bool EasyButton::read(int read_type)
 
 			for (size_t i = 0; i < MAX_SEQUENCES; i++)
 			{
-				if(_sequences[i].newPress(read_started_ms))
+				if (_sequences[i].newPress(read_started_ms))
 				{
 					callback_t function = _pressed_sequence_callbacks[i];
 					function();
@@ -120,9 +121,8 @@ bool EasyButton::read(int read_type)
 		// since button released, reset _pressed_for_callbackCalled value.
 		_held_callback_called = false;
 	}
-	else if(isPressed() && read_type == EASYBUTTON_TYPE_POLL)
+	else if (isPressed() && read_type == EASYBUTTON_READ_TYPE_POLL)
 		_checkPressedTime();
-	
 
 	_time = read_started_ms;
 
@@ -164,11 +164,11 @@ void EasyButton::_checkPressedTime()
 		_was_btn_held = true;
 
 		// reset short presses counters.
-		for(Sequence seq:_sequences)
-			{
-				seq.reset();
-			}
-		
+		for (Sequence seq : _sequences)
+		{
+			seq.reset();
+		}
+
 		// call the callback function for a long press event if it exist and if it has not been called yet.
 		if (_pressed_for_callback && !_held_callback_called)
 		{
