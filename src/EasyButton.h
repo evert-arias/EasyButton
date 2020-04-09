@@ -45,11 +45,6 @@ public:
 	bool releasedFor(uint32_t duration); // Returns true if the button state at the last read was released, and has been in that state for at least the given number of milliseconds.
 private:
 	// PRIVATE VARIABLES
-	Sequence _sequences[MAX_SEQUENCES];
-	uint16_t _sequences_count;
-	callback_t _pressed_sequence_callbacks[MAX_SEQUENCES];
-
-	uint32_t _held_threshold;	// Held threshold.
 	bool _was_btn_held;			// Indicate if button was held.
 	bool _held_callback_called; // Indicate if button long press has been notified.
 	uint8_t _pin;				// Arduino pin number where the Button is connected to.
@@ -61,9 +56,7 @@ private:
 	bool _changed;				// Has the state change since last read.
 	uint32_t _time;				// Time of current state.
 	uint32_t _last_change;		// Time of last state change.
-	// CALLBACKS
-	callback_t _pressed_callback;	  // Callback function for pressed events.
-	callback_t _pressed_for_callback; // Callback function for pressedFor events.
+
 
 	virtual bool _readPin();  // Abstracts the pin value reading.
 	void _checkPressedTime(); // Verify if pressed_for_callback should be called
