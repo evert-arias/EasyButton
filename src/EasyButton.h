@@ -20,7 +20,7 @@ class EasyButton: public EasyButtonBase
 	friend class EasyButtonTouch;
 
 public:
-	EasyButton(uint8_t pin, uint32_t debounce_time = 35, bool pullup_enable = true, bool active_low = true) : _pin(pin), _db_time(debounce_time), _active_low(active_low), _pu_enabled(pullup_enable), _read_type(EASYBUTTON_READ_TYPE_POLL)
+	EasyButton(uint8_t pin, uint32_t debounce_time = 35, bool pullup_enable = true, bool active_low = true) : _pin(pin), _db_time(debounce_time), EasyButtonBase(active_low), _pu_enabled(pullup_enable), _read_type(EASYBUTTON_READ_TYPE_POLL)
 	{
 	}
 	~EasyButton() {}
