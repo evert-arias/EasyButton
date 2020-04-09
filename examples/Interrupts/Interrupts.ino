@@ -26,7 +26,7 @@ void sequenceEllapsed()
 void buttonISR()
 {
   //When button is being used through external interrupts, parameter INTERRUPT must be passed to read() function
-  button.read(EASYBUTTON_READ_TYPE_INTERRUPT);
+  button.read();
 }
 
 void setup()
