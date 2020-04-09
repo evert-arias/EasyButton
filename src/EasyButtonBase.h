@@ -19,6 +19,7 @@
 class EasyButtonBase
 {    
 public:
+    //Common functions
     #ifdef EASYBUTTON_FUNCTIONAL_SUPPORT
         typedef std::function<void()> callback_t;
     #else
@@ -30,7 +31,7 @@ public:
     void onPressedFor(uint32_t duration, callback_t callback);					// Call a callback function when the button has been held for at least the given number of milliseconds.
     void onSequence(uint8_t sequences, uint32_t duration, callback_t callback); // Call a callback function when the given sequence has matched.
 
-private:
+    //Common variables
     Sequence _sequences[MAX_SEQUENCES];
 	uint16_t _sequences_count;
     uint32_t _held_threshold;	                                                // Held threshold.
