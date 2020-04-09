@@ -5,21 +5,6 @@
  * @license MIT
  */
 
-#ifndef _EasyButton_h
-#define _EasyButton_h
-
-#include <Arduino.h>
-#include "Sequence.h"
-
-#ifdef ESP8266
-#define EASYBUTTON_FUNCTIONAL_SUPPORT 1
-#endif
-
-#ifdef EASYBUTTON_FUNCTIONAL_SUPPORT
-#include <functional>
-#include "FunctionalInterrupt.h"
-#endif
-
 #define EASYBUTTON_READ_TYPE_INTERRUPT 0
 #define EASYBUTTON_READ_TYPE_POLL 1
 

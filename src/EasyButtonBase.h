@@ -1,5 +1,5 @@
-#ifndef _EasyButton_h
-#define _EasyButton_h
+#ifndef _EasyButtonBase_h
+#define _EasyButtonBase_h
 
 #include <Arduino.h>
 #include "Sequence.h"
