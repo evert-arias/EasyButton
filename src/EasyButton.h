@@ -10,13 +10,12 @@
 
 #include <Arduino.h>
 #include "EasyButtonBase.h"
-#include "Sequence.h"
 
 #define EASYBUTTON_READ_TYPE_INTERRUPT 0
 #define EASYBUTTON_READ_TYPE_POLL 1
 
 
-class EasyButton:EasyButtonBase
+class EasyButton: public EasyButtonBase
 {
 	friend class EasyButtonTouch;
 
@@ -40,7 +39,6 @@ public:
 	bool releasedFor(uint32_t duration); // Returns true if the button state at the last read was released, and has been in that state for at least the given number of milliseconds.
 private:
 	// PRIVATE VARIABLES
-	bool _was_btn_held;			// Indicate if button was held.
 	uint8_t _pin;				// Arduino pin number where the Button is connected to.
 	uint32_t _db_time;			// Debounce time (ms).
 	bool _pu_enabled;			// Internal pullup resistor enabled.
