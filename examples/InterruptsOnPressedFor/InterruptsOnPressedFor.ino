@@ -2,7 +2,7 @@
   Name:    InterruptsOnPressedFor.ino
   Created:  8/17/2019 10:16:52 AM
   Author: José Gabriel Companioni Benítez (https://github.com/elC0mpa)
-  Description: Example to demostrate how to use onPressedFor functionality when using interrupts 
+  Description: Example to demostrate how to use onPressedFor functionality when using interrupts
 */
 
 #include <Arduino.h>
@@ -21,7 +21,7 @@ void buttonPressedTwoSeconds()
 void buttonISR()
 {
   //When button is being used through external interrupts, parameter INTERRUPT must be passed to read() function
-  button.read(INTERRUPT); 
+  button.read(EASYBUTTON_READ_TYPE_INTERRUPT);
 }
 
 void setup() {

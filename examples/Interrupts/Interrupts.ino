@@ -2,7 +2,7 @@
   Name:    Interrupts.ino
   Created:  8/11/2019 11:45:52 AM
   Author: José Gabriel Companioni Benítez (https://github.com/elC0mpa)
-  Description: Example to demostrate how to use interrupts in order to improve performance 
+  Description: Example to demostrate how to use interrupts in order to improve performance
 */
 
 #include <Arduino.h>
@@ -26,7 +26,7 @@ void sequenceEllapsed()
 void buttonISR()
 {
   //When button is being used through external interrupts, parameter INTERRUPT must be passed to read() function
-  button.read(INTERRUPT);
+  button.read(EASYBUTTON_READ_TYPE_INTERRUPT);
 }
 
 void setup()
@@ -43,7 +43,7 @@ void setup()
   }
 }
 
-void loop() 
+void loop()
 {
   // put your main code here, to run repeatedly:
 }
