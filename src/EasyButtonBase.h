@@ -1,5 +1,6 @@
 #ifndef _EasyButtonBase_h
 #define _EasyButtonBase_h
+#endif
 
 #include <Arduino.h>
 #include "Sequence.h"
@@ -31,6 +32,7 @@ public:
     void onPressedFor(uint32_t duration, callback_t callback);					// Call a callback function when the button has been held for at least the given number of milliseconds.
     void onSequence(uint8_t sequences, uint32_t duration, callback_t callback); // Call a callback function when the given sequence has matched.
 
+protected:
     //Common variables
     Sequence _sequences[MAX_SEQUENCES];
 	uint16_t _sequences_count;
@@ -46,4 +48,5 @@ public:
 	bool _changed;				                                                // Has the state change since last read.
 	uint32_t _time;				                                                // Time of current state.
 	uint32_t _last_change;		                                                // Time of last state change.
+    bool _was_btn_held;			                                                // Indicate if button was held.
 };
