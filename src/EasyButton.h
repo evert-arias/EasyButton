@@ -5,6 +5,12 @@
  * @license MIT
  */
 
+#ifndef _EasyButton_h
+#define _EasyButton_h
+
+#include <Arduino.h>
+#include "Sequence.h"
+
 #define EASYBUTTON_READ_TYPE_INTERRUPT 0
 #define EASYBUTTON_READ_TYPE_POLL 1
 
@@ -26,11 +32,8 @@ public:
 	~EasyButton() {}
 	// PUBLIC FUNCTIONS
 	virtual void begin();														// Initialize a button object and the pin it's connected to.
-	bool read(int read_type = EASYBUTTON_READ_TYPE_POLL);						// Returns the current debounced button state, true for pressed, false for released.
+	bool read();																// Returns the current debounced button state, true for pressed, false for released.
 	void update();																// Update button pressed time, only needed when using interrupts
-	void onPressed(callback_t callback);										// Call a callback function when the button has been pressed and released.
-	void onPressedFor(uint32_t duration, callback_t callback);					// Call a callback function when the button has been held for at least the given number of milliseconds.
-	void onSequence(uint8_t sequences, uint32_t duration, callback_t callback); // Call a callback function when the given sequence has matched.
 	void enableInterrupt(callback_t callback);									// Call a callback function when the button is pressed or released
 	void disableInterrupt();
 	bool supportsInterrupt();			 // Returns true if the button pin is an external interrupt pin
