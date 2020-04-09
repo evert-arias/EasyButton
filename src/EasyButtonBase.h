@@ -39,4 +39,11 @@ public:
 	callback_t _pressed_sequence_callbacks[MAX_SEQUENCES];
     callback_t _pressed_callback;	                                            // Callback function for pressed events.
 	callback_t _pressed_for_callback;                                           // Callback function for pressedFor events.
+    bool _held_callback_called;                                                 // Indicate if button long press has been notified.
+    bool _active_low;				                                            // Inverts button logic. If true, low = pressed else high = pressed.
+    bool _current_state;		                                                // Current button state, true = pressed.
+	bool _last_state;			                                                // Previous button state, true = pressed.
+	bool _changed;				                                                // Has the state change since last read.
+	uint32_t _time;				                                                // Time of current state.
+	uint32_t _last_change;		                                                // Time of last state change.
 };

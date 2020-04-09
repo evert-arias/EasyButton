@@ -41,16 +41,9 @@ public:
 private:
 	// PRIVATE VARIABLES
 	bool _was_btn_held;			// Indicate if button was held.
-	bool _held_callback_called; // Indicate if button long press has been notified.
 	uint8_t _pin;				// Arduino pin number where the Button is connected to.
 	uint32_t _db_time;			// Debounce time (ms).
-	bool _active_low;				// Inverts button logic. If true, low = pressed else high = pressed.
 	bool _pu_enabled;			// Internal pullup resistor enabled.
-	bool _current_state;		// Current button state, true = pressed.
-	bool _last_state;			// Previous button state, true = pressed.
-	bool _changed;				// Has the state change since last read.
-	uint32_t _time;				// Time of current state.
-	uint32_t _last_change;		// Time of last state change.
 	uint8_t _read_type;			// Read type. Poll or Interrupt
 
 
