@@ -21,7 +21,7 @@ class EasyButton:EasyButtonBase
 	friend class EasyButtonTouch;
 
 public:
-	EasyButton(uint8_t pin, uint32_t debounce_time = 35, bool pullup_enable = true, bool invert = true) : _pin(pin), _db_time(debounce_time), _invert(invert), _pu_enabled(pullup_enable), _read_type(EASYBUTTON_READ_TYPE_POLL)
+	EasyButton(uint8_t pin, uint32_t debounce_time = 35, bool pullup_enable = true, bool active_low = true) : _pin(pin), _db_time(debounce_time), _active_low(invert), _pu_enabled(pullup_enable), _read_type(EASYBUTTON_READ_TYPE_POLL)
 	{
 	}
 	~EasyButton() {}
@@ -44,7 +44,7 @@ private:
 	bool _held_callback_called; // Indicate if button long press has been notified.
 	uint8_t _pin;				// Arduino pin number where the Button is connected to.
 	uint32_t _db_time;			// Debounce time (ms).
-	bool _invert;				// Inverts button logic. If true, low = pressed else high = pressed.
+	bool _active_low;				// Inverts button logic. If true, low = pressed else high = pressed.
 	bool _pu_enabled;			// Internal pullup resistor enabled.
 	bool _current_state;		// Current button state, true = pressed.
 	bool _last_state;			// Previous button state, true = pressed.

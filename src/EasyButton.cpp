@@ -11,7 +11,7 @@ void EasyButton::begin()
 {
 	pinMode(_pin, _pu_enabled ? INPUT_PULLUP : INPUT);
 	_current_state = _readPin();
-	if (_invert)
+	if (_active_low)
 		_current_state = !_current_state;
 	_time = millis();
 	_last_state = _current_state;
@@ -55,7 +55,7 @@ bool EasyButton::read()
 
 	bool pinVal = _readPin();
 
-	if (_invert)
+	if (_active_low)
 		pinVal = !pinVal;
 
 	if (read_started_ms - _last_change < _db_time)
