@@ -9,24 +9,19 @@
 #define _EasyButton_h
 
 #include <Arduino.h>
+#include "EasyButtonBase.h"
 #include "Sequence.h"
 
 #define EASYBUTTON_READ_TYPE_INTERRUPT 0
 #define EASYBUTTON_READ_TYPE_POLL 1
 
-#define MAX_SEQUENCES 5
 
-class EasyButton
+class EasyButton:EasyButtonBase
 {
 	friend class EasyButtonTouch;
 
 public:
-#ifdef EASYBUTTON_FUNCTIONAL_SUPPORT
-	typedef std::function<void()> callback_t;
-#else
-	typedef void (*callback_t)();
-#endif
-	EasyButton(uint8_t pin, uint32_t debounce_time = 35, bool pullup_enable = true, bool invert = true) : _pin(pin), _db_time(debounce_time), _invert(invert), _pu_enabled(pullup_enable)
+	EasyButton(uint8_t pin, uint32_t debounce_time = 35, bool pullup_enable = true, bool invert = true) : _pin(pin), _db_time(debounce_time), _invert(invert), _pu_enabled(pullup_enable), _read_type(EASYBUTTON_READ_TYPE_POLL)
 	{
 	}
 	~EasyButton() {}
@@ -56,6 +51,7 @@ private:
 	bool _changed;				// Has the state change since last read.
 	uint32_t _time;				// Time of current state.
 	uint32_t _last_change;		// Time of last state change.
+	uint8_t _read_type;			// Read type. Poll or Interrupt
 
 
 	virtual bool _readPin();  // Abstracts the pin value reading.

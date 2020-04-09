@@ -49,7 +49,7 @@ bool EasyButton::releasedFor(uint32_t duration)
 	return !_current_state && _time - _last_change >= duration;
 }
 
-bool EasyButton::read(int read_type)
+bool EasyButton::read()
 {
 	uint32_t read_started_ms = millis();
 
@@ -99,7 +99,7 @@ bool EasyButton::read(int read_type)
 		// since button released, reset _pressed_for_callbackCalled value.
 		_held_callback_called = false;
 	}
-	else if (isPressed() && read_type == EASYBUTTON_READ_TYPE_POLL)
+	else if (isPressed() && _read_type == EASYBUTTON_READ_TYPE_POLL)
 		_checkPressedTime();
 
 	_time = read_started_ms;
@@ -120,11 +120,13 @@ bool EasyButton::supportsInterrupt()
 void EasyButton::enableInterrupt(EasyButton::callback_t callback)
 {
 	attachInterrupt(digitalPinToInterrupt(_pin), callback, CHANGE);
+	_read_type = EASYBUTTON_READ_TYPE_INTERRUPT;
 }
 
 void EasyButton::disableInterrupt()
 {
 	detachInterrupt(digitalPinToInterrupt(_pin));
+	_read_type = EASYBUTTON_READ_TYPE_POLL;
 }
 
 void EasyButton::update()
