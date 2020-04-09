@@ -26,6 +26,7 @@ public:
     #else
         typedef void (*callback_t)();
     #endif
+    EasyButtonBase(bool active_low):_active_low(active_low){}
     virtual void begin() = 0;													// Initialize a button object and the pin it's connected to.
     virtual bool read() = 0;                                        			// Returns the current debounced button state, true for pressed, false for released.
     void onPressed(callback_t callback);										// Call a callback function when the button has been pressed and released.
