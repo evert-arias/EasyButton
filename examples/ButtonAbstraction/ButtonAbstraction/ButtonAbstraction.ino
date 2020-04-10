@@ -9,9 +9,9 @@
 #include <Arduino.h>
 #include <EasyVar.h>
 bool button = true;       //This variable MUST be global
-EasyVar button_abstraction(button, true);
+EasyVar button_abstraction(button);
 
-unsigned long previous_millis = 0;        // will store last time LED was updated
+unsigned long previous_millis = 0;       
 unsigned int interval = 1000;           // interval at which to blink (milliseconds)
 
 void buttonPressed()
