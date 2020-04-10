@@ -31,12 +31,7 @@ public:
 	void enableInterrupt(callback_t callback);									// Call a callback function when the button is pressed or released
 	void disableInterrupt();
 	bool supportsInterrupt();			 // Returns true if the button pin is an external interrupt pin
-	bool isPressed();					 // Returns true if the button state was pressed at the last read.
-	bool isReleased();					 // Returns true if the button state was released at the last read.
-	bool wasPressed();					 // Returns true if the button state at the last read was pressed.
-	bool wasReleased();					 // Returns true if the button state at the last read was released.
-	bool pressedFor(uint32_t duration);	 // Returns true if the button state at the last read was pressed, and has been in that state for at least the given number of milliseconds.
-	bool releasedFor(uint32_t duration); // Returns true if the button state at the last read was released, and has been in that state for at least the given number of milliseconds.
+
 private:
 	// PRIVATE VARIABLES
 	uint8_t _pin;				// Arduino pin number where the Button is connected to.

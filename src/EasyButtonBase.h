@@ -33,6 +33,13 @@ public:
     void onPressedFor(uint32_t duration, callback_t callback);					// Call a callback function when the button has been held for at least the given number of milliseconds.
     void onSequence(uint8_t sequences, uint32_t duration, callback_t callback); // Call a callback function when the given sequence has matched.
 
+    bool isPressed();					 // Returns true if the button state was pressed at the last read.
+	bool isReleased();					 // Returns true if the button state was released at the last read.
+	bool wasPressed();					 // Returns true if the button state at the last read was pressed.
+	bool wasReleased();					 // Returns true if the button state at the last read was released.
+	bool pressedFor(uint32_t duration);	 // Returns true if the button state at the last read was pressed, and has been in that state for at least the given number of milliseconds.
+	bool releasedFor(uint32_t duration); // Returns true if the button state at the last read was released, and has been in that state for at least the given number of milliseconds.
+
 protected:
     //Common variables
     Sequence _sequences[MAX_SEQUENCES];

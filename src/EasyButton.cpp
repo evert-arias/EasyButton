@@ -19,36 +19,6 @@ void EasyButton::begin()
 	_last_change = _time;
 }
 
-bool EasyButton::isPressed()
-{
-	return _current_state;
-}
-
-bool EasyButton::isReleased()
-{
-	return !_current_state;
-}
-
-bool EasyButton::wasPressed()
-{
-	return _current_state && _changed;
-}
-
-bool EasyButton::wasReleased()
-{
-	return !_current_state && _changed;
-}
-
-bool EasyButton::pressedFor(uint32_t duration)
-{
-	return _current_state && _time - _last_change >= duration;
-}
-
-bool EasyButton::releasedFor(uint32_t duration)
-{
-	return !_current_state && _time - _last_change >= duration;
-}
-
 bool EasyButton::read()
 {
 	uint32_t read_started_ms = millis();
