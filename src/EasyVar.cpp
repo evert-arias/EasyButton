@@ -15,14 +15,12 @@ bool EasyVar::read()
 {
 	uint32_t read_started_ms = millis();
 
-	bool pinVal = _readPin();
+	_last_state = _current_state;				// save last state.
+	_current_state = _button_abstraction;
 
 	if (_active_low)
-		pinVal = !pinVal;
-
-												//true -> debounce time ellapsed
-    _last_state = _current_state;				// save last state.
-    _current_state = pinVal;					// assign new state as current state from pin's value.
+		_current_state = !_current_state;
+		
     _changed = (_current_state != _last_state); // report state change if current state vary from last state.
     // if state has changed since last read.
     if (_changed)
