@@ -10,7 +10,7 @@ class EasyVar: public EasyButtonBase
 private:
     bool _button_abstraction;
 public:
-    EasyVar(bool button_abstraction, bool active_low):_button_abstraction(button_abstraction), EasyButtonBase(active_low){}
+    EasyVar(bool& button_abstraction, bool active_low):_button_abstraction(button_abstraction), EasyButtonBase(active_low){}
 
     // PUBLIC FUNCTIONS
 	void begin();														// Initialize a button object and the pin it's connected to.
