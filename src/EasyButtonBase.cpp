@@ -52,3 +52,26 @@ bool EasyButtonBase::releasedFor(uint32_t duration)
 {
 	return !_current_state && _time - _last_change >= duration;
 }
+
+void EasyButtonBase::_checkPressedTime()
+{
+	uint32_t read_started_ms = millis();
+	if (_current_state && read_started_ms - _last_change >= _held_threshold && _pressed_for_callback)
+	{
+		// button has been pressed for at least the given time
+		_was_btn_held = true;
+
+		// reset short presses counters.
+		for (Sequence seq : _sequences)
+		{
+			seq.reset();
+		}
+
+		// call the callback function for a long press event if it exist and if it has not been called yet.
+		if (_pressed_for_callback && !_held_callback_called)
+		{
+			_held_callback_called = true; // set as called.
+			_pressed_for_callback();
+		}
+	}
+}

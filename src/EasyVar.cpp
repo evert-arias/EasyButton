@@ -53,7 +53,7 @@ bool EasyVar::read()
 		// since button released, reset _pressed_for_callbackCalled value.
 		_held_callback_called = false;
 	}
-	else if (isPressed() && _read_type == EASYBUTTON_READ_TYPE_POLL)
+	else if (isPressed())
 		_checkPressedTime();
 
 	_time = read_started_ms;

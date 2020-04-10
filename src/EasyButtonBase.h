@@ -57,4 +57,7 @@ protected:
 	uint32_t _time;				                                                // Time of current state.
 	uint32_t _last_change;		                                                // Time of last state change.
     bool _was_btn_held;			                                                // Indicate if button was held.
+
+    //Common functions
+    void _checkPressedTime(); // Verify if pressed_for_callback should be called
 };
