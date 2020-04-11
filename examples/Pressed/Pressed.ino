@@ -14,11 +14,13 @@
 EasyButton button(BUTTON_PIN);
 
 // Callback function to be called when the button is pressed.
-void onPressed() {
-  Serial.println("Button has been pressed!");
+void onPressed()
+{
+  Serial.println("Button pressed!");
 }
 
-void setup() {
+void setup()
+{
   // Initialize Serial for debuging purposes.
   Serial.begin(115200);
   // Initialize the button.
@@ -27,7 +29,8 @@ void setup() {
   button.onPressed(onPressed);
 }
 
-void loop() {
-  // Continuously read the status of the button. 
+void loop()
+{
+  // Continuously read the status of the button.
   button.read();
 }
