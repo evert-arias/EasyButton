@@ -1,6 +1,5 @@
 #ifndef _EasyButtonVirtual_h
 #define _EasyButtonVirtual_h
-#endif
 
 #include <Arduino.h>
 #include "EasyButtonBase.h"
@@ -17,3 +16,5 @@ public:
     void begin(); // Initialize a button object and the pin it's connected to.
     bool read();  // Returns the current debounced button state, true for pressed, false for released.
 };
+
+#endif
