@@ -8,6 +8,9 @@
 
 EasyButton	KEYWORD1
 EasyButtonTouch	KEYWORD1
+EasyButtonVirtual	KEYWORD1
+EasyButtonBase	KEYWORD1
+Sequence	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -27,6 +30,10 @@ releasedFor	KEYWORD2
 enableInterrupt	KEYWORD2
 disableInterrupt	KEYWORD2
 supportsInterrupt	KEYWORD2
+newPress	KEYWORD2
+reset	KEYWORD2
+enable	KEYWORD2
+disable	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
