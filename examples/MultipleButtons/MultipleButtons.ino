@@ -21,13 +21,13 @@ EasyButton button2(BUTTON_TWO_PIN);
 // Callback function to be called when button1 is pressed
 void onButton1Pressed()
 {
-  Serial.println("Button1 pressed!");
+  Serial.println("Button1 pressed");
 }
 
 // Callback function to be called when button2 is pressed
 void onButton2Pressed()
 {
-  Serial.println("Button2 pressed!");
+  Serial.println("Button2 pressed");
 }
 
 void setup()
