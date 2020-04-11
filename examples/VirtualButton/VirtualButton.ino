@@ -9,13 +9,18 @@
 #include <Arduino.h>
 #include <EasyButtonVirtual.h>
 
+/* 
+  The following is just to simulate changes in the button state,
+  it is not useful when using the library in a real case. 
+ */
+unsigned long previous_millis = 0;
+unsigned int interval = 1000;
+
 // Global variable that simulates the button's value.
 bool button = true;
 
+// Instance of the button.
 EasyButtonVirtual vButton(button);
-
-unsigned long previous_millis = 0;
-unsigned int interval = 1000;
 
 // Callback function to be called when the button is pressed.
 void buttonPressed()
