@@ -1,3 +1,10 @@
+/**
+ * EasyButtonBase.h
+ * @author Evert Arias
+ * @version 2.0.0
+ * @license MIT
+ */
+
 #include "EasyButtonBase.h"
 
 void EasyButtonBase::onPressed(EasyButtonBase::callback_t callback)

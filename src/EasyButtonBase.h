@@ -1,3 +1,10 @@
+/**
+ * EasyButtonBase.h
+ * @author Evert Arias
+ * @version 2.0.0
+ * @license MIT
+ */
+
 #ifndef _EasyButtonBase_h
 #define _EasyButtonBase_h
 
