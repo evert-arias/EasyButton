@@ -8,7 +8,7 @@
 class EasyButtonVirtual : public EasyButtonBase
 {
 private:
-    bool _button_abstraction;
+    bool &_button_abstraction;
 
 public:
     EasyButtonVirtual(bool &button_abstraction, bool active_low = true) : EasyButtonBase(active_low), _button_abstraction(button_abstraction) {}
