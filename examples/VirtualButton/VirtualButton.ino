@@ -16,6 +16,8 @@
 unsigned long previous_millis = 0;
 unsigned int interval = 1000;
 
+#define BAUDRATE 115200
+
 // Global variable that simulates the button's value.
 bool button = true;
 
@@ -25,7 +27,7 @@ EasyButtonVirtual vButton(button);
 // Callback function to be called when the button is pressed.
 void buttonPressed()
 {
-  Serial.println("Button pressed!");
+  Serial.println("Button pressed");
   interval = 2500;
 }
 
@@ -38,7 +40,7 @@ void buttonPressedForTwoSeconds()
 void setup()
 {
   // Initialize Serial for debuging purposes.
-  Serial.begin(115200);
+  Serial.begin(BAUDRATE);
 
   // Initialize the button.
   vButton.begin();
