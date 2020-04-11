@@ -1,7 +1,7 @@
 /**
  * EasyButtonTouch.h
  * @author Evert Arias, Gutierrez PS
- * @version 1.1.0
+ * @version 2.0.0
  * @license MIT
  */
 
@@ -18,7 +18,7 @@ public:
 	void begin();
 
 private:
-	uint16_t _touch_threshold; // If touchRead() is below the threshold, the button is considered pressed
+	uint16_t _touch_threshold; // If touchRead() is below the threshold, the button is considered pressed.
 
 	bool _readPin();
 };
