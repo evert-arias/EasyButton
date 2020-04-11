@@ -1,3 +1,10 @@
+/**
+ * EasyButtonVirtual.h
+ * @author Evert Arias, Jose Gabriel Companioni Benitez
+ * @version 2.0.0
+ * @license MIT
+ */
+
 #ifndef _EasyButtonVirtual_h
 #define _EasyButtonVirtual_h
 

@@ -1,3 +1,10 @@
+/**
+ * EasyButtonVirtual.h
+ * @author Evert Arias, Jose Gabriel Companioni Benitez
+ * @version 2.0.0
+ * @license MIT
+ */
+
 #include "EasyButtonVirtual.h"
 
 void EasyButtonVirtual::begin()
