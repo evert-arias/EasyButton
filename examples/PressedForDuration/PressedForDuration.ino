@@ -1,8 +1,8 @@
 /*
- Name:		PressedForDuration.ino
- Created:	9/5/2018 10:49:52 AM
- Author:	Evert Arias
- Description: Example to demostrate how to use the library to detect a pressed for a given duration on a button.
+  Name:		PressedForDuration.ino
+  Created:	9/5/2018 10:49:52 AM
+  Author:	Evert Arias
+  Description: Example to demostrate how to use the library to detect a pressed for a given duration on a button.
 */
 
 #include <EasyButton.h>
@@ -14,11 +14,13 @@
 EasyButton button(BUTTON_PIN);
 
 // Callback function to be called when the button is pressed.
-void onPressedForDuration() {
-  Serial.println("Button has been pressed!");
+void onPressedForDuration()
+{
+  Serial.println("Button pressed!");
 }
 
-void setup() {
+void setup()
+{
   // Initialize Serial for debuging purposes.
   Serial.begin(115200);
   // Initialize the button.
@@ -27,7 +29,8 @@ void setup() {
   button.onPressedFor(2000, onPressedForDuration);
 }
 
-void loop() {
-  // Continuously read the status of the button. 
+void loop()
+{
+  // Continuously read the status of the button.
   button.read();
 }
