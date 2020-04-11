@@ -1,3 +1,6 @@
+#ifndef _EasyButtonSequence_h
+#define _EasyButtonSequence_h
+
 #include <Arduino.h>
 
 class Sequence
@@ -28,3 +31,5 @@ public:
 
     void disable() { _is_enabled = false; }
 };
+
+#endif
