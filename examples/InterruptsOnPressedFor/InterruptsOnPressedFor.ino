@@ -35,6 +35,8 @@ void setup()
   // Initialize Serial for debuging purposes.
   Serial.begin(BAUDRATE);
 
+  Serial.println("EasyButton onPressedFor interrupt example");
+
   // Initialize the button.
   button.begin();
 
@@ -43,7 +45,7 @@ void setup()
   if (button.supportsInterrupt())
   {
     button.enableInterrupt(buttonISR);
-    Serial.println("EasyButton onPressedFor interrupt example");
+    Serial.println("Button will be used through interrupts");
   }
 }
 

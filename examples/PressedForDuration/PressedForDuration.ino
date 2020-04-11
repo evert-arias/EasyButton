@@ -25,6 +25,9 @@ void setup()
 {
   // Initialize Serial for debuging purposes.
   Serial.begin(BAUDRATE);
+
+  Serial.println("EasyButton pressedFor example");
+
   // Initialize the button.
   button.begin();
   // Add the callback function to be called when the button is pressed for at least the given time.

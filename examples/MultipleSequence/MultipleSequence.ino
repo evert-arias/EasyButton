@@ -31,14 +31,14 @@ void setup()
   // Initialize Serial for debuging purposes.
   Serial.begin(BAUDRATE);
 
+  Serial.println("EasyButton multiple onSequence example");
+
   // Initialize the button.
   button.begin();
 
   button.onSequence(2, 1500, sequenceEllapsed);
 
   button.onSequence(3, 2500, otherSequence);
-
-  Serial.println("Multiple onSequence example");
 }
 
 void loop()

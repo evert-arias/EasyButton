@@ -25,6 +25,9 @@ void setup()
 {
   // Initialize Serial for debuging purposes.
   Serial.begin(BAUDRATE);
+
+  Serial.println("EasyButton sequence example");
+
   // Initialize the button.
   button.begin();
   // Add the callback function to be called when the given sequence of presses is matched.
