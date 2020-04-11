@@ -8,8 +8,8 @@
 #include <EasyButton.h>
 
 // Arduino pin where the buttons are connected to
-#define BUTTON_ONE_PIN 26
-#define BUTTON_TWO_PIN 27
+#define BUTTON_ONE_PIN 2
+#define BUTTON_TWO_PIN 4
 
 #define BAUDRATE 115200
 
