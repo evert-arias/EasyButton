@@ -8,8 +8,10 @@
 #include <Arduino.h>
 #include <EasyButton.h>
 
-#define BUTTON_PIN 16
-#define BAUDRATE 19200
+// Arduino pin where the button is connected to.
+#define BUTTON_PIN 2
+
+#define BAUDRATE 115200
 
 void sequenceEllapsed()
 {
@@ -21,18 +23,27 @@ void otherSequence()
   Serial.println("Other sequence");
 }
 
+// Instance of the button.
 EasyButton button(BUTTON_PIN);
 
-void setup() {
-  // put your setup code here, to run once:
+void setup()
+{
+  // Initialize Serial for debuging purposes.
   Serial.begin(BAUDRATE);
+
+  Serial.println();
+  Serial.println(">>> EasyButton multiple onSequence example <<<");
+
+  // Initialize the button.
   button.begin();
+
   button.onSequence(2, 1500, sequenceEllapsed);
+
   button.onSequence(3, 2500, otherSequence);
-  Serial.println("Multiple onSequence example");
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop()
+{
+  // Continuously read the status of the button.
   button.read();
 }

@@ -1,3 +1,13 @@
+/**
+ * Sequence.h
+ * @author Evert Arias, Jose Gabriel Companioni Benitez
+ * @version 2.0.0
+ * @license MIT
+ */
+
+#ifndef _EasyButtonSequence_h
+#define _EasyButtonSequence_h
+
 #include <Arduino.h>
 
 class Sequence
@@ -28,3 +38,5 @@ public:
 
     void disable() { _is_enabled = false; }
 };
+
+#endif

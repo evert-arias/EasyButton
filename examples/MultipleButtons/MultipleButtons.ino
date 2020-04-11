@@ -8,8 +8,10 @@
 #include <EasyButton.h>
 
 // Arduino pin where the buttons are connected to
-#define BUTTON_ONE_PIN 26
-#define BUTTON_TWO_PIN 27
+#define BUTTON_ONE_PIN 2
+#define BUTTON_TWO_PIN 4
+
+#define BAUDRATE 115200
 
 // Button1
 EasyButton button1(BUTTON_ONE_PIN);
@@ -17,18 +19,25 @@ EasyButton button1(BUTTON_ONE_PIN);
 EasyButton button2(BUTTON_TWO_PIN);
 
 // Callback function to be called when button1 is pressed
-void onButton1Pressed() {
-  Serial.println("Button1 has been pressed!");
+void onButton1Pressed()
+{
+  Serial.println("Button1 pressed");
 }
 
 // Callback function to be called when button2 is pressed
-void onButton2Pressed() {
-  Serial.println("Button2 has been pressed!");
+void onButton2Pressed()
+{
+  Serial.println("Button2 pressed");
 }
 
-void setup() {
+void setup()
+{
   // Initialize Serial for debuging purposes
-  Serial.begin(115200);
+  Serial.begin(BAUDRATE);
+
+  Serial.println();
+  Serial.println(">>> EasyButton multiple buttons example <<<");
+
   // Initialize the button1
   button1.begin();
   // Initialize the button2
@@ -39,7 +48,8 @@ void setup() {
   button2.onPressed(onButton2Pressed);
 }
 
-void loop() {
+void loop()
+{
   // Continuously read the status of the buttons
   button1.read();
   button2.read();
