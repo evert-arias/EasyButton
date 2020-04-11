@@ -8,14 +8,17 @@
 #include <Arduino.h>
 #include <EasyButton.h>
 
+// Arduino pin where the buttons are connected to.
 #define BUTTON_PIN 2
-#define BAUDRATE 9600
 
+#define BAUDRATE 115200
+
+// Instance of the button.
 EasyButton button(BUTTON_PIN);
 
 void buttonPressed()
 {
-  Serial.println("Button Pressed");
+  Serial.println("Button pressed");
 }
 
 void sequenceEllapsed()
@@ -25,17 +28,26 @@ void sequenceEllapsed()
 
 void buttonISR()
 {
-  //When button is being used through external interrupts, parameter INTERRUPT must be passed to read() function
+  /*
+    When button is being used through external interrupts, 
+    parameter INTERRUPT must be passed to read() function
+   */
   button.read();
 }
 
 void setup()
 {
-  // put your setup code here, to run once:
+
+  // Initialize Serial for debuging purposes.
   Serial.begin(BAUDRATE);
+
+  // Initialize the button.
   button.begin();
+
   button.onPressed(buttonPressed);
+
   button.onSequence(2, 1500, sequenceEllapsed);
+
   if (button.supportsInterrupt())
   {
     button.enableInterrupt(buttonISR);
