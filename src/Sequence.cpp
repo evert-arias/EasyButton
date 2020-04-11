@@ -1,3 +1,10 @@
+/**
+ * Sequence.h
+ * @author Evert Arias, Jose Gabriel Companioni Benitez
+ * @version 2.0.0
+ * @license MIT
+ */
+
 #include "Sequence.h"
 
 bool Sequence::newPress(uint32_t read_started_ms)
