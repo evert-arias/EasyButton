@@ -31,7 +31,8 @@ void setup()
   // Initialize Serial for debuging purposes.
   Serial.begin(BAUDRATE);
 
-  Serial.println("EasyButton multiple onSequence example");
+  Serial.println();
+  Serial.println(">>> EasyButton multiple onSequence example <<<");
 
   // Initialize the button.
   button.begin();

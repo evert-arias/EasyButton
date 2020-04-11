@@ -42,7 +42,8 @@ void setup()
   // Initialize Serial for debuging purposes.
   Serial.begin(BAUDRATE);
 
-  Serial.println("EasyButton virtual button example");
+  Serial.println();
+  Serial.println(">>> EasyButton virtual button example <<<");
 
   // Initialize the button.
   vButton.begin();

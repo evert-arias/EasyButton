@@ -35,7 +35,8 @@ void setup()
   // Initialize Serial for debuging purposes.
   Serial.begin(BAUDRATE);
 
-  Serial.println("EasyButton onPressedFor interrupt example");
+  Serial.println();
+  Serial.println(">>> EasyButton onPressedFor interrupt example <<<");
 
   // Initialize the button.
   button.begin();

@@ -35,7 +35,8 @@ void setup()
   // Initialize Serial for debuging purposes
   Serial.begin(BAUDRATE);
 
-  Serial.println("EasyButton multiple buttons example");
+  Serial.println();
+  Serial.println(">>> EasyButton multiple buttons example <<<");
 
   // Initialize the button1
   button1.begin();
