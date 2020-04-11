@@ -8,36 +8,50 @@
 #include <Arduino.h>
 #include <EasyButton.h>
 
-#define BUTTON_PIN 2  //Should be a pin that supports external interrupts
-#define BAUDRATE 9600
+/* 
+  Arduino pin where the buttons are connected to.
+  Should be a pin that supports external interrupts. 
+ */
+#define BUTTON_PIN 2
 
+#define BAUDRATE 115200
+
+// Instance of the button.
 EasyButton button(BUTTON_PIN);
 
 void buttonPressedTwoSeconds()
 {
-  Serial.println("Button Pressed for two seconds");
+  Serial.println("Button pressed for two seconds");
 }
 
 void buttonISR()
 {
-  //When button is being used through external interrupts, parameter INTERRUPT must be passed to read() function
+  // When button is being used through external interrupts, parameter INTERRUPT must be passed to read() function.
   button.read();
 }
 
-void setup() {
-  // put your setup code here, to run once:
+void setup()
+{
+  // Initialize Serial for debuging purposes.
   Serial.begin(BAUDRATE);
+
+  // Initialize the button.
   button.begin();
+
   button.onPressedFor(2000, buttonPressedTwoSeconds);
+
   if (button.supportsInterrupt())
   {
     button.enableInterrupt(buttonISR);
-    Serial.println("EasyButton onPressedFor Interrupt example");
+    Serial.println("EasyButton onPressedFor interrupt example");
   }
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-  // update() function must be called repeatedly only if onPressedFor functionality is being used and interrupt is enabled
+void loop()
+{
+  /*
+    update() function must be called repeatedly only if onPressedFor 
+    functionality is being used and interrupt is enabled.
+  */
   button.update();
 }
