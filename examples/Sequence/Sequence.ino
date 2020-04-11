@@ -10,19 +10,21 @@
 // Arduino pin where the button is connected to.
 #define BUTTON_PIN 26
 
+#define BAUDRATE 115200
+
 // Instance of the button.
 EasyButton button(BUTTON_PIN);
 
 // Callback function to be called when the button is pressed.
 void onSequenceMatched()
 {
-  Serial.println("Button pressed!");
+  Serial.println("Button pressed");
 }
 
 void setup()
 {
   // Initialize Serial for debuging purposes.
-  Serial.begin(115200);
+  Serial.begin(BAUDRATE);
   // Initialize the button.
   button.begin();
   // Add the callback function to be called when the given sequence of presses is matched.

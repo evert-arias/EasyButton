@@ -10,24 +10,29 @@
 // Arduino pin where the button is connected to.
 #define BUTTON_PIN 27
 
+#define BAUDRATE 115200
+
 // Instance of the button.
 EasyButtonTouch button(BUTTON_PIN);
 
 // Callback function to be called when the button is pressed.
-void onPressed() {
-  Serial.println("Button has been pressed!");
+void onPressed()
+{
+  Serial.println("Button has been pressed");
 }
 
-void setup() {
+void setup()
+{
   // Initialize Serial for debuging purposes.
-  Serial.begin(115200);
+  Serial.begin(BAUDRATE);
   // Initialize the button.
   button.begin();
   // Add the callback function to be called when the button is pressed.
   button.onPressed(onPressed);
 }
 
-void loop() {
+void loop()
+{
   // Continuously read the status of the button.
   button.read();
 }
