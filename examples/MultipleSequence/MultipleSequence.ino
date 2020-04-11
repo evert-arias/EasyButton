@@ -30,6 +30,7 @@ void setup()
 {
   // Initialize Serial for debuging purposes.
   Serial.begin(BAUDRATE);
+
   // Initialize the button.
   button.begin();
 
