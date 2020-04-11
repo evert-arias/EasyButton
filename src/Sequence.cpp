@@ -5,18 +5,21 @@ bool Sequence::newPress(uint32_t read_started_ms)
 	if (_is_enabled)
 	{
 		if (_short_press_count == 0)
+		{
 			_first_press_time = read_started_ms;
+		}
 
 		_short_press_count++;
 
 		if (_short_press_count == _press_sequences && _press_sequence_duration >= (read_started_ms - _first_press_time))
-		{ //true-> pressed_sequence
+		{
+			// Pressed sequence
 			reset();
 			return true;
 		}
-
 		else if (_press_sequence_duration <= (read_started_ms - _first_press_time))
-		{ // true-> sequence timeout
+		{
+			// Sequence timeout
 			reset();
 			return false;
 		}
