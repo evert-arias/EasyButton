@@ -12,17 +12,19 @@
 // Global variable that simulates the button's value.
 bool button = true;
 
-EasyButtonVirtual button_abstraction(button);
+EasyButtonVirtual vButton(button);
 
 unsigned long previous_millis = 0;
-unsigned int interval = 1000; // interval at which to blink (milliseconds)
+unsigned int interval = 1000;
 
+// Callback function to be called when the button is pressed.
 void buttonPressed()
 {
-  Serial.println("Button Pressed");
+  Serial.println("Button pressed!");
   interval = 2500;
 }
 
+// Callback function to be called when the button is pressed.
 void buttonPressedForTwoSeconds()
 {
   Serial.println("Button pressed for two seconds");
@@ -30,21 +32,31 @@ void buttonPressedForTwoSeconds()
 
 void setup()
 {
-  // put your setup code here, to run once:
-  button_abstraction.begin();
-  button_abstraction.onPressed(buttonPressed);
-  button_abstraction.onPressedFor(2000, buttonPressedForTwoSeconds);
+  // Initialize Serial for debuging purposes.
+  Serial.begin(115200);
+
+  // Initialize the button.
+  vButton.begin();
+
+  // Callback function to be called when the button is pressed.
+  vButton.onPressed(buttonPressed);
+
+  // Add the callback function to be called when the button is pressed for at least the given time.
+  vButton.onPressedFor(2000, buttonPressedForTwoSeconds);
 }
 
 void loop()
 {
-  // put your main code here, to run repeatedly:
-  button_abstraction.read();
+  // Continuously read the status of the button.
+  vButton.read();
 
+  /* 
+    The following is just to simulate changes in the button state,
+    it is not useful when using the library in a real case. 
+  */
   unsigned long current_millis = millis();
   if (current_millis - previous_millis >= interval)
   {
-    // save the last time you blinked the LED
     previous_millis = current_millis;
     button = !button;
   }
