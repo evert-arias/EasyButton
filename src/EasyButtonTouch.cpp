@@ -1,6 +1,6 @@
 /**
  * EasyButtonTouch.cpp
- * @author Evert Arias, Gutierrez PS
+ * @author Evert Arias, Gutierrez PS, Felix A. Epp
  * @version 2.0.0
  * @license MIT
  */
@@ -19,7 +19,8 @@ void EasyButtonTouch::begin()
 
 bool EasyButtonTouch::_readPin()
 {
-	return touchRead(_pin) < _touch_threshold;
+	ADCFilter.Filter(touchRead(_pin));
+	return ADCFilter.Current() < _touch_threshold;
 }
 
 #endif
