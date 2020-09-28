@@ -27,8 +27,8 @@ bool Sequence::newPress(uint32_t read_started_ms)
 		else if (_press_sequence_duration <= (read_started_ms - _first_press_time))
 		{
 			// Sequence timeout
-			reset();
-			return false;
+			_short_press_count = 1;
+			_first_press_time = read_started_ms;
 		}
 	}
 	return false;
