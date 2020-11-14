@@ -18,6 +18,7 @@ void EasyButtonBase::onPressedFor(uint32_t duration, EasyButtonBase::callback_t 
 	_pressed_for_callback = callback;
 }
 
+#ifndef EASYBUTTON_DO_NOT_USE_SEQUENCES
 void EasyButtonBase::onSequence(uint8_t sequences, uint32_t duration, EasyButtonBase::callback_t callback)
 {
 	if (_sequences_count < 5)
@@ -28,6 +29,7 @@ void EasyButtonBase::onSequence(uint8_t sequences, uint32_t duration, EasyButton
 		_pressed_sequence_callbacks[_sequences_count++] = callback;
 	}
 }
+#endif
 
 bool EasyButtonBase::isPressed()
 {
@@ -67,11 +69,13 @@ void EasyButtonBase::_checkPressedTime()
 		// Button has been pressed for at least the given time.
 		_was_btn_held = true;
 
+#ifndef EASYBUTTON_DO_NOT_USE_SEQUENCES
 		// Reset short presses counters.
 		for (Sequence seq : _sequences)
 		{
 			seq.reset();
 		}
+#endif
 
 		// Call the callback function for a long press event if it exist and if it has not been called yet.
 		if (_pressed_for_callback && !_held_callback_called)
