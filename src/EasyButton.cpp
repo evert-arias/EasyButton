@@ -61,6 +61,7 @@ bool EasyButton::read()
 				_pressed_callback();
 			}
 
+#ifndef EASYBUTTON_DO_NOT_USE_SEQUENCES
 			for (size_t i = 0; i < MAX_SEQUENCES; i++)
 			{
 				if (_sequences[i].newPress(read_started_ms))
@@ -69,6 +70,7 @@ bool EasyButton::read()
 					function();
 				}
 			}
+#endif
 		}
 		// Button was not held.
 		else

@@ -20,7 +20,9 @@
 #include "FunctionalInterrupt.h"
 #endif
 
+#ifndef EASYBUTTON_DO_NOT_USE_SEQUENCES
 #define MAX_SEQUENCES 5
+#endif
 
 class EasyButtonBase
 {
@@ -38,7 +40,9 @@ public:
     virtual bool read() = 0;                                                    // Returns the current debounced button state, true for pressed, false for released.
     void onPressed(callback_t callback);                                        // Call a callback function when the button has been pressed and released.
     void onPressedFor(uint32_t duration, callback_t callback);                  // Call a callback function when the button has been held for at least the given number of milliseconds.
+#ifndef EASYBUTTON_DO_NOT_USE_SEQUENCES
     void onSequence(uint8_t sequences, uint32_t duration, callback_t callback); // Call a callback function when the given sequence has matched.
+#endif
 
     bool isPressed();                    // Returns true if the button state was pressed at the last read.
     bool isReleased();                   // Returns true if the button state was released at the last read.
@@ -49,11 +53,15 @@ public:
 
 protected:
     // Common variables.
+#ifndef EASYBUTTON_DO_NOT_USE_SEQUENCES
     Sequence _sequences[MAX_SEQUENCES];
     uint16_t _sequences_count;
+#endif
     uint32_t _held_threshold; // Held threshold.
 
+#ifndef EASYBUTTON_DO_NOT_USE_SEQUENCES
     callback_t _pressed_sequence_callbacks[MAX_SEQUENCES];
+#endif
     callback_t _pressed_callback;     // Callback function for pressed events.
     callback_t _pressed_for_callback; // Callback function for pressedFor events.
     bool _held_callback_called;       // Indicate if button long press has been notified.
