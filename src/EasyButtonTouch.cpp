@@ -8,6 +8,17 @@
 #if defined(ESP32)
 #include "EasyButtonTouch.h"
 
+void EasyButtonTouch::setThreshold(int threshold)
+{
+	_touch_threshold = threshold;
+}
+
+void EasyButtonTouch::begin(int threshold)
+{
+	_touch_threshold = threshold;
+	begin();
+}
+
 void EasyButtonTouch::begin()
 {
 	_current_state = _readPin();
