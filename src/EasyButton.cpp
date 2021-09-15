@@ -11,7 +11,8 @@ void EasyButton::begin()
 {
 	pinMode(_pin, _pu_enabled ? INPUT_PULLUP : INPUT);
 	_current_state = _readPin();
-	if (_active_low)
+	// to detect the first time that is pressed the flash button on ESP8266. I have to negate the logic of the active low flag
+	if (!_active_low)
 	{
 		_current_state = !_current_state;
 	}
