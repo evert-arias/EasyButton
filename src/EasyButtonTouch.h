@@ -7,6 +7,8 @@
 
 #if !defined(_EasyButtonTouch_h) and defined(ESP32)
 #define _EasyButtonTouch_h
+#include <include/soc/soc_caps.h>
+#if defined(SOC_TOUCH_SENSOR_SUPPORTED)
 
 #include <Arduino.h>
 #include <Filter.h>
@@ -26,5 +28,5 @@ private:
 
 	bool _readPin();
 };
-
+#endif
 #endif
