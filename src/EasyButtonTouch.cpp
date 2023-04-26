@@ -7,7 +7,7 @@
 
 #if defined(ESP32)
 #include "EasyButtonTouch.h"
-#if defined(SOC_TOUCH_SENSOR_SUPPORTED)
+#if defined(SOC_TOUCH_SENSOR_SUPPORTED) || (defined(SOC_TOUCH_SENSOR_NUM) && SOC_TOUCH_SENSOR_NUM > 1)
 
 void EasyButtonTouch::setThreshold(int threshold)
 {

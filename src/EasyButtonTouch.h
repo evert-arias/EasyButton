@@ -8,7 +8,7 @@
 #if !defined(_EasyButtonTouch_h) and defined(ESP32)
 #define _EasyButtonTouch_h
 #include <include/soc/soc_caps.h>
-#if defined(SOC_TOUCH_SENSOR_SUPPORTED)
+#if defined(SOC_TOUCH_SENSOR_SUPPORTED) || (defined(SOC_TOUCH_SENSOR_NUM) && SOC_TOUCH_SENSOR_NUM > 1)
 
 #include <Arduino.h>
 #include <Filter.h>
