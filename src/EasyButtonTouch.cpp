@@ -1,7 +1,7 @@
 /**
  * EasyButtonTouch.cpp
  * @author Evert Arias, Gutierrez PS, Felix A. Epp
- * @version 2.0.0
+ * @version 2.0.3
  * @license MIT
  */
 
