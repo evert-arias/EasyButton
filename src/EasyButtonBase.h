@@ -21,7 +21,12 @@
 #endif
 
 #ifndef EASYBUTTON_DO_NOT_USE_SEQUENCES
+#ifndef EASYBUTTON_MAX_SEQUENCES
 #define MAX_SEQUENCES 5
+#else
+#define MAX_SEQUENCES 4 // EASYBUTTON_MAX_SEQUENCES
+#warning MAX_SEQUENCES
+#endif
 #endif
 
 class EasyButtonBase

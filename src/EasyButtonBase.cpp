@@ -21,7 +21,7 @@ void EasyButtonBase::onPressedFor(uint32_t duration, EasyButtonBase::callback_t 
 #ifndef EASYBUTTON_DO_NOT_USE_SEQUENCES
 void EasyButtonBase::onSequence(uint8_t sequences, uint32_t duration, EasyButtonBase::callback_t callback)
 {
-	if (_sequences_count < 5)
+	if (_sequences_count < MAX_SEQUENCES)
 	{
 		Sequence sequence(sequences, duration);
 		sequence.enable();
