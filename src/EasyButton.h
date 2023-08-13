@@ -19,7 +19,7 @@ class EasyButton : public EasyButtonBase
 	friend class EasyButtonTouch;
 
 public:
-	EasyButton(uint8_t pin, uint32_t debounce_time = 35, bool pullup_enable = true, bool active_low = true) : EasyButtonBase(active_low), _pin(pin), _db_time(debounce_time), _pu_enabled(pullup_enable), _read_type(EASYBUTTON_READ_TYPE_POLL)
+	EasyButton(uint8_t pin, uint32_t debounce_time = 35, bool pullup_enable = true, bool active_low = true, bool filtering = false) : EasyButtonBase(active_low), _pin(pin), _db_time(debounce_time), _pu_enabled(pullup_enable), _read_type(EASYBUTTON_READ_TYPE_POLL), _filtering(filtering)
 	{
 	}
 	~EasyButton() {}
@@ -38,6 +38,8 @@ private:
 	uint32_t _db_time;	// Debounce time (ms).
 	bool _pu_enabled;	// Internal pullup resistor enabled.
 	uint8_t _read_type; // Read type. Poll or Interrupt.
+	bool _last_read_state;
+	bool _filtering;	// whether to filter switch activation as well as debouncing
 
 	virtual bool _readPin(); // Abstracts the pin value reading.
 };

@@ -17,6 +17,7 @@ void EasyButton::begin()
 	}
 	_time = millis();
 	_last_state = _current_state;
+	_last_read_state = _current_state;
 	_changed = false;
 	_last_change = _time;
 }
@@ -30,6 +31,11 @@ bool EasyButton::read()
 	if (_active_low)
 	{
 		pinVal = !pinVal;
+	}
+
+	if (_filtering && pinVal != _last_read_state) {
+		_last_change = read_started_ms;
+		_last_read_state = pinVal;
 	}
 
 	if (read_started_ms - _last_change < _db_time)
