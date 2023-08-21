@@ -1,0 +1,30 @@
+{
+  "name": "EasyButton",
+  "keywords": "IO, button, sensor, arduino",
+  "description": "EasyButton is an small Arduino library for debouncing momentary contact switches like tactile buttons. It uses events and callbacks to trigger actions when a button is pressed once or held for a given duration. It also provides a sequence counter to be able to rise an event when a given pattern of presses has been matched.",
+  "version": "2.0.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evert-arias/EasyButton"
+  },
+  "url": "https://easybtn.earias.me",
+  "frameworks": "arduino",
+  "platforms": "espressif8266, espressif32",
+  "dependencies": [
+    {
+      "owner": "megunolink",
+      "name": "MegunoLink",
+      "version": "^1.33"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Evert Arias",
+      "email": "evert.arias@hotmail.com"
+    },
+    {
+      "name": "Felix A. Epp",
+      "url": "https://github.com/eppfel"
+    }
+  ]
+}
