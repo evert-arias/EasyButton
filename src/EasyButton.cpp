@@ -7,6 +7,14 @@
 
 #include "EasyButton.h"
 
+void EasyButton::setPin(uint8_t pin)
+{
+	if (_time == 0)
+	{
+		_pin = pin;
+	}
+}
+
 void EasyButton::begin()
 {
 	pinMode(_pin, _pu_enabled ? INPUT_PULLUP : INPUT);
