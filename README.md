@@ -1,6 +1,6 @@
 # EasyButton
 
-> 🔥 **EasyButton 3.0 Poll**: We're considering a major update with bug fixes and improved documentation! [VOTE NOW](https://github.com/your-username/easybtn/discussions/poll-issue-number) to help shape the future of EasyButton! 🔥
+> 🔥 **EasyButton 3.0 Poll**: We're considering a major update with bug fixes and improved documentation! [VOTE NOW](https://github.com/evert-arias/EasyButton/discussions/100) to help shape the future of EasyButton! 🔥
 
 [![License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](http://doge.mit-license.org)
 
