@@ -16,6 +16,7 @@ void EasyButtonBase::onPressedFor(uint32_t duration, EasyButtonBase::callback_t 
 {
 	_held_threshold = duration;
 	_pressed_for_callback = callback;
+	_held_callback_called = false;
 }
 
 #ifndef EASYBUTTON_DO_NOT_USE_SEQUENCES
