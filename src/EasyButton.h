@@ -25,6 +25,7 @@ public:
 	~EasyButton() {}
 
 	// PUBLIC FUNCTIONS
+	virtual void setPin(uint8_t pin);		   // Set/Change GPIO pin, must set/change before calling begin().
 	virtual void begin();					   // Initialize a button object and the pin it's connected to.
 	bool read();							   // Returns the current debounced button state, true for pressed, false for released.
 	void update();							   // Update button pressed time, only needed when using interrupts.
